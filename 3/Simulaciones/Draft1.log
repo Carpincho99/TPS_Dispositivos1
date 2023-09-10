@@ -1,0 +1,38 @@
+.STEP increment has wrong sign -- fixing...
+Circuit: * C:\users\eg\Desktop\hdd\Documents\UTN\2023\Dispositivos\TPS\3\Simulaciones\Draft1.asc
+
+Direct Newton iteration for .op point succeeded.
+.step vds=0
+.step vds=1
+.step vds=2
+.step vds=3
+.step vds=4
+.step vds=5
+.step vds=6
+.step vds=7
+.step vds=8
+.step vds=9
+.step vds=10
+.step vds=11
+.step vds=12
+.step vds=13
+.step vds=14
+.step vds=15
+
+Date: Tue Jul 18 20:28:32 2023
+Total elapsed time: 0.355 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 65
+traniter = 60
+tranpoints = 31
+accept = 31
+rejected = 0
+matrix size = 4
+fillins = 0
+solver = Normal
+Avg thread counts: 7.9/8.0/8.0/7.9
+Matrix Compiler1:       7 opcodes
+Matrix Compiler2: 242 bytes object code size

@@ -1,0 +1,145 @@
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{mathpazo} % Palatino font
+
+
+\AddToShipoutPictureBG{
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw [line width=3pt]
+      ($ (current page.north west) + (1.5cm,-2.0cm) $)
+      rectangle
+      ($ (current page.south east) + (-1.5cm,1.8cm) $);
+    \draw [line width=1pt]
+      ($ (current page.north west) + (1.65cm,-2.15cm) $)
+      rectangle
+      ($ (current page.south east) + (-1.65cm,1.95cm) $); 
+    {\ifnum\value{page}>1 
+        \draw [line width=2pt]
+          ($ (current page.north west) + (1.65cm,-4.35cm) $)
+          --
+          ($ (current page.north east) + (-1.65cm,-4.35cm) $); 
+        \draw [line width=2pt]
+          ($ (current page.north west) + (1.65cm,-4.55cm) $)
+          --
+          ($ (current page.north east) + (-1.65cm,-4.55cm) $);
+
+        \draw [line width=2pt]
+          ($ (current page.center) + (0.25cm,12.7cm) $)
+          --
+          ($ (current page.center) + (0.25cm,10.5cm) $);
+        \draw [line width=2pt]
+          ($ (current page.center) + (0.05cm,12.7cm) $)
+          --
+          ($ (current page.center) + (0.05cm,10.5cm) $);
+
+        \draw [line width=2pt]
+          ($ (current page.south west) + (1.65cm,2.8cm) $)
+          --
+          ($ (current page.south east) + (-1.65cm,2.8cm) $); 
+        \draw [line width=2pt]
+          ($ (current page.south west) + (1.65cm,3cm) $)
+          --
+          ($ (current page.south east) + (-1.65cm,3cm) $);
+
+        \draw [line width=2pt]
+          ($ (current page.center) + (0.25cm,-12.9cm) $)
+          --
+          ($ (current page.center) + (0.25cm,-12cm) $);
+        \draw [line width=2pt]
+          ($ (current page.center) + (0.05cm,-12.9cm) $)
+          --
+          ($ (current page.center) + (0.05cm,-12cm) $);
+    \fi}
+  \end{tikzpicture}%
+}
+
+\makeatletter
+\newcommand{\subtitledoc}[1]{\newcommand{\@subtitledoc}{#1}}
+\newcommand{\instituto}[1]{\newcommand{\@instituto}{#1}}
+\newcommand{\carrera}[1]{\newcommand{\@carrera}{#1}}
+\newcommand{\professorTeo}[1]{\newcommand{\@professorTeo}{#1}}
+\newcommand{\professorPrac}[1]{\newcommand{\@professorPrac}{#1}}
+\newcommand{\catedra}[1]{\newcommand{\@catedra}{#1}}
+\newcommand{\curso}[1]{\newcommand{\@curso}{#1}}
+\newcommand{\legajo}[1]{\newcommand{\@legajo}{#1}}
+\newcommand{\footerauthor}[1]{\newcommand{\@footerauthor}{#1}}
+\newcommand{\footerlegajo}[1]{\newcommand{\@footerlegajo}{#1}}
+\newcommand{\footercatedra}[1]{\newcommand{\@footercatedra}{#1}}
+
+
+\geometry{a4paper,left=1in,right=1in}
+\setlength\headheight{59.58496pt}
+\addtolength{\topmargin}{-0.00496pt}
+\setlength{\footskip}{42pt}
+\fancyheadoffset[L]{7.5mm}
+\fancyheadoffset[R]{7.5mm}
+\fancyfootoffset[L]{7.5mm}
+\fancyfootoffset[R]{7.5mm}
+
+\fancyhead[C]{} %eliminar antiguo numero de pagina
+\fancyhead[L]{
+  \begin{minipage}[b]{66mm}
+    \footnotesize{
+      \textbf{UTN} - Universidad Tecnológica Nacional \\
+      \textbf{Especialidad: }Electrónica\\
+      \textbf{Cátedra: } \@catedra\\
+      \textbf{Comisión: }\@curso\\
+      \textbf{Página: } \thepage\ de \pageref{LastPage}
+    }
+  \end{minipage}
+  \begin{minipage}[b]{7.7mm}
+    \includegraphics[width=15mm]{./inc/COPYlogo-utn.png}
+  \end{minipage}
+}
+\fancyhead[R]{
+  \begin{minipage}[b]{80mm}
+    \raggedright
+    \textbf{Profesor de teórico:} \small{\@professorTeo} \\
+    \textbf{Profesor de practico:} \@professorPrac \\
+    \textbf{Alum.:} \@footerauthor \\
+    \textbf{\@title}
+  \end{minipage}
+}
+
+\fancyfoot[C]{} %eliminar antiguo numero de pagina
+\fancyfoot[R]{Página \thepage\ de \pageref{LastPage}}
+\fancyfoot[L]{\@date}
+
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\renewcommand{\maketitle}{
+  \newpage
+  \thispagestyle{empty}
+  \begin{center}
+    \includegraphics[width=0.32\textwidth]{inc/COPYlogo-utn.png}\\
+    \huge{
+      UTN
+      \medskip
+      ``Universidad Tecnológica Nacional''
+    }
+    \vspace{0.5cm}
+  \end{center}
+  \par
+  {\Large \textbf{Catedra:} \@catedra\par
+    \textbf{Profesor de teórico:} \@professorTeo\par
+    \textbf{Profesor de practico:} \@professorPrac\par
+    \textbf{Integrantes:}\@author\par
+  }
+  \textbf{\Large{\@title}}
+  \vspace{1cm}
+  \begin{center}
+    {\Large\@date}
+  \end{center}
+  \newpage
+}
+\makeatother

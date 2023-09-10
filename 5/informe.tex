@@ -1,0 +1,204 @@
+\input{inc/estructura.tex}
+\usepackage{amsmath}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{siunitx}
+
+\usepackage{pgfplots}
+
+\instituto{Universidad Tecnológica Nacional\\Facultad Regional Córdoba}
+\carrera{Ingeniería Electrónica}
+\title{Titulo}
+\subtitledoc{Subtitulo}
+\catedra{Catedra}
+\professor{XXXXXXXXXX XXXXXXXX. \par XXXXXXXXXX XXXXXXXX.}
+\curso{XRX}
+\author{XXXXX XXXXX, XXXXX XXXXX. \par XXXXX XXXXX, XXXXX XXXXX.}
+\legajo{XXXXX\par XXXXX}
+\footerauthor{XXXXX, XXXXX}
+\footerlegajo{XXXXX, XXXXX}
+\footercatedra{XXXX}
+\date{\today}
+
+\begin{document} %Maximo 10 paginas
+\maketitle
+\tableofcontents
+\newpage
+\section{Introducción}
+\section{Marco teorico}
+\section{Primera Parte}
+\subsection{Circuito}
+\begin{center}
+  \begin{circuitikz}[american]
+    \draw (0,0) node[nujt, yscale=-1](ujt){}
+    ;
+    \draw (ujt.E) to[nos, mirror, invert, l=$L_2$] ++(-2,0)
+    to[R] ++(-2,0)
+    to[short] ++(0,1) node[vcc]{$V_{E}$}
+    ;
+    \draw (ujt.B2) to[R] ++(0,2)
+    to[nos, l=$L_1$] ++(0,1)
+    to[short] ++(0,1) node[vcc]{$V_{CC}$}
+    ;
+    \draw (ujt.B1) to[short] ++(0,-1) node[ground];
+  \end{circuitikz}
+\end{center}
+\subsection{Procedimiento}
+\begin{enumerate}
+  \item Armar el circuito seleccionando un correcto valor de las resistencias en
+    función del datasheet del UJT.
+  \item Abrir el interruptor L1 y cerrar el interruptor L2.
+  \item Variar la $V_E$ desde 0-30V y medir la corriente $I_E$.
+  \item Completar la tabla propuesta modificándola si fuera necesario.
+  \item Graficar la curva $I_E= f(V_E)$ con los datos relevados de la tabla.
+  \item Abrir el interruptor L2 y cerrar el interruptor L1.
+  \item Variar la VCC desde 0-30V y medir la corriente IB.
+  \item Completar la tabla propuesta modificándola si fuera necesario.
+\end{enumerate}
+\subsection{Simulación}
+\subsection{Experimental}
+\begin{minipage}{0.3\linewidth}
+\begin{tabular}{c|c}
+  $V_{E}$ &$I_{E}$  \\
+  \hline
+  0   &0 \\
+  2   &0 \\
+  4   &0 \\
+  6   &0 \\
+  8   &0 \\
+  10  &0 \\
+  12  &0 \\
+  14  &0 \\
+  16  &0 \\
+  18  &0 \\
+  20  &0 \\
+  22  &0 \\
+  24  &0 \\
+  26  &0 \\
+  28  &0 \\
+  30  &0 
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel = $V_{E}$,
+    ylabel = $I_{E}$,
+    grid=major,
+    ]
+    \addplot[color=red,mark=*] coordinates {
+      (0 , 0)
+      (2 , 0)
+      (4 , 0)
+      (6 , 0)
+      (8 , 0)
+      (10, 0)
+      (12, 0)
+      (14, 0)
+      (16, 0)
+      (18, 0)
+      (20, 0)
+      (22, 0)
+      (24, 0)
+      (26, 0)
+      (28, 0)
+      (30, 0)
+    };  
+  \end{axis} 
+\end{tikzpicture}
+\end{minipage}
+
+\begin{minipage}{0.3\linewidth}
+\begin{tabular}{c|c|c}
+  $V_{CC}$ &$V_{B}$ &$I_{B}$  \\
+  \hline
+  0   &0  &0  \\
+  2   &0  &0  \\
+  4   &0  &0  \\
+  6   &0  &0  \\
+  8   &0  &0  \\
+  10  &0  &0  \\
+  12  &0  &0  \\
+  14  &0  &0  \\
+  16  &0  &0  \\
+  18  &0  &0  \\
+  20  &0  &0  \\
+  22  &0  &0  \\
+  24  &0  &0  \\
+  26  &0  &0  \\
+  28  &0  &0  \\
+  30  &0  &0  \
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel = $V_{B}$,
+    ylabel = $I_{B}$,
+    grid=major,
+    ]
+    \addplot[color=red,mark=*] coordinates {
+      (0 , 0)
+      (2 , 0)
+      (4 , 0)
+      (6 , 0)
+      (8 , 0)
+      (10, 0)
+      (12, 0)
+      (14, 0)
+      (16, 0)
+      (18, 0)
+      (20, 0)
+      (22, 0)
+      (24, 0)
+      (26, 0)
+      (28, 0)
+      (30, 0)
+    };  
+  \end{axis} 
+\end{tikzpicture}
+\end{minipage}
+
+\section{Segunda Parte}
+\subsection{Circuito}
+\begin{center}
+  \begin{circuitikz}
+    \draw (0,0) node[nujt, yscale=-1, xscale=-1](ujt){}
+    ;
+    \draw (ujt.B2) to[R, n=r1, l=100\unit{\ohm}] ++(0,2);
+    \draw (ujt.B1) to[R, l=22\unit{\ohm}] ++(0,-2)
+    to[short] ++(0,-0.5) node[ground]{}
+    ;
+    \draw (ujt.B2) to[short, -o] ++(-1,0);
+    \draw (ujt.B1) to[short, -o] ++(-1,0);
+  \end{circuitikz}
+\end{center}
+\subsection{Procedimiento}
+\begin{enumerate}
+  \item Armar el circuito.
+  \item Medir y graficar la señal en OUT1
+  \item Medir y graficar la señal en OUT2
+  \item Variar el potenciómetro y observar el efecto sobre la OUT1 y la OUT2 
+\end{enumerate}
+\subsection{Simulación}
+\subsection{Experimental}
+
+\section{Tercer Parte}
+\begin{center}
+  \begin{tabular}{l|c}
+    Parametro &Valor \\ 
+    \hline
+    $\eta$          &  \\
+    $R_{BBO}$       &  \\
+    $V_{EB1(SAT)}$  &  \\
+    $V_{(BR)B1E}$   &  \\
+    $P_D$           &  \\
+    $I_J$           &  
+ \end{tabular} 
+\end{center}
+
+\section{Conclusión}
+\end{document}

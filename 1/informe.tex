@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper,oneside]{article}
+\input{inc/estructura_enzo.tex}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{xfrac}
+\usepackage{siunitx}
+\AddToHook{cmd/section/before}{\clearpage}
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\catedra{Dispositivos Electrónicos}
+\title{TP1: ``Leyes de Ohm y de Kirchhoff''}
+\footerauthor{Avedano, Giorgis, Gomez, Petiti}
+\curso{3R4}
+\professorTeo{Avramovich Alejandro}
+\professorPrac{}
+\author{
+  \begin{itemize}
+    \item Avedano Nicolas 
+    \item Giorgis Ezequiel
+    \item Gomez Enzo
+    \item Petiti Matias
+  \end{itemize}
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Introducción}
+En este trabajo práctico de laboratorio implementaremos las leyes de Ohm y Kirchhoff  para calcular circuitos de resistores. De cada diagrama calcularemos la resistencia total, las caídas de tensión y las corrientes. Luego, armaremos los circuitos en la protoboard y por medio de mediciones, demostraremos de manera experimental  que las leyes de ohm y Kirchhoff se cumplen. Para finalizar, compararemos los datos calculados con los medidos y calcularemos el porcentaje de error
+\section{Marco Teórico}
+\subsection{Ley de Ohm}
+Hay una relación fundamental entre las tres magnitudes básicas de todos los circuitos eléctricos/electrónicos.
+\begin{align}
+  I=\frac{V}{R} 
+\end{align}
+La intensidad (corriente) que recorre un circuito es directamente proporcional a la tensión de la fuente de alimentación e inversamente proporcional a la resistencia en dicho circuito.
+\subsection{Ley de Kirchhoff de las tensiones}
+Esta ley establece: “En un lazo cerrado, la suma de todas las caídas de tensión es igual a la tensión total suministrada. De forma equivalente, la suma algebraica de las diferencias de potencial eléctrico en un lazo es igual a cero.”
+\begin{align}
+  \sum_{k=1}^{n} V_{R} = V_{1} + V_{2} +V_{3} +\dots+V_{n} = 0
+\end{align}
+\subsection{Ley de Kirchhoff de las corrientes}
+Esta ley también es llamada ley de nodos o primera ley de Kirchhoff. Esta establece: ``En cualquier nodo, la suma de las corrientes que entran en ese nodo es igual a la suma de las corrientes que salen. De forma equivalente, la suma de todas las corrientes que pasan por el nodo es igual a cero''
+\begin{align}
+  \sum_{k=1}^{n} I_{R} = I_{1} + I_{2} +I_{3} +\dots+I_{n} = 0
+\end{align}
+\section{Materiales}
+\subsection{Componentes}
+\begin{center}
+\begin{tabular}{c c c}
+ Cantidad &Componente &Descripción \\
+ \hline
+ 1&Resistor &$100\unit{\ohm} \;  \sfrac{1}{4}\unit{\watt}$ \\
+ 1&Resistor &$200\unit{\ohm} \;  \sfrac{1}{4}\unit{\watt}$ \\
+ 1&Resistor &$150\unit{\ohm} \;  \sfrac{1}{4}\unit{\watt}$ \\
+ 1&Resistor &$270\unit{\ohm} \;  \sfrac{1}{4}\unit{\watt}$ \\
+ 2&Resistores &$68\unit{\ohm}\;  \sfrac{1}{4}\unit{\watt}$ 
+\end{tabular}
+\end{center}
+\subsection{Herramientas}
+\begin{center}
+  \begin{tabular}{c c c}
+    Cantidad &Herramienta &Descripción\\ 
+    \hline
+    1 &Pinza &Alicate \\
+    1 &Placa de proyectos \\
+    1 &Multímetro
+\end{tabular}
+\end{center}
+\subsection{Instrumentos}
+\begin{center}
+  \begin{tabular}{c c c}
+    Cantidad &Instrumento &Descripción\\ 
+    \hline
+    1 &Fuente de alimentación &variable
+\end{tabular}
+\end{center}
+\section{Procedimiento}
+\begin{itemize}
+    \item Medir cada Resistor y Anotar el valor en la tabla. \\
+    \item Armar circuito y Medir valor de Resistencia total. \\
+    \item Calcular corriente y caídas de tensión de cada Resistor. \\
+    \item Conectar Fuente y Medir caídas de tensión y Corrientes. \\
+    \item Verificar que se cumplan las leyes de Kirchhoff. 
+\end{itemize}
+\section{Cálculo, Mediciones, Gráficos, Programa}
+\subsection{Circuito 1}
+Calculando resistencia total
+\begin{align}
+  \begin{aligned}
+R_{5} &= R_{3} + R_{4} \\
+        &= 200\unit{\ohm} + 270\unit{\ohm} \\
+        &= 470\unit{\ohm} \\
+\end{aligned}
+\quad\quad
+\begin{aligned}
+  R_{5\parallelsum 2}  &= \frac{R_{5}R_{2}}{R_{5}R_{2}} \\ 
+                       &= \frac{470\unit{\ohm}150\unit{\ohm}}{470\unit{\ohm}+150\unit{\ohm}} \\ 
+                       &=113.70\unit{\ohm}
+\end{aligned}
+\quad\quad 
+\begin{aligned}
+  R_{T} &= R_{5\parallelsum 2} + R_{1} \\ 
+        &=113.70 \unit{\ohm} + 100 \unit{\ohm} \\
+        &= 213.70 \unit{\ohm}
+\end{aligned}
+\end{align}
+Despejando corriente por medio de Ley de Ohm
+\begin{align}
+  I_{1} = \frac{\varepsilon}{R_{T}} = \frac{10V}{213.70\Omega} = 0.046A = 46.79\unit{\milli\ampere}
+\end{align}
+Valuado para $R_{1}$
+\begin{align}
+  V_{R_{1}} = I_{1} R_{1} = 46.79mA \cdot 100\unit{\ohm} = 4.679V 
+\end{align}
+Por ley de Kirchhoff de las tensiones
+\begin{align}
+  V_{R_{2}} = \varepsilon - V_{R_{1}} = 10V-4.679V = 5.321V 
+\end{align}
+Utilizando el valor anterior, por Ley de Ohm
+\begin{align}
+  I_{2} = \frac{V_{R_{2}}}{R_{2}} = \frac{5.321}{150} = 35.47mA 
+\end{align}
+Por ley de Kirchhoff de las corrientes
+\begin{align}
+  I_{3} = I_{1}-I_{2} = 46.79mA - 35.47mA = 11.32mA 
+\end{align}
+Finalmente
+\begin{align}
+  V_{R_{3}} = R_{3} I_{3} = 200\unit{\ohm} \cdot 11.32mA  = 2,264V  \\
+  V_{R_{4}} = R_{4} I_{3} = 270\unit{\ohm} \cdot 11.32mA  = 3,0564V 
+\end{align}
+
+\begin{center}
+  \begin{table}
+    \begin{tabular}{P{0.17\linewidth} | P{0.17\linewidth} |P{0.17\linewidth} |P{0.17\linewidth} |P{0.17\linewidth}} 
+      \toprule
+      \textbf{Resistencia (con Óhmetro)} $[\Omega]$ &\textbf{Corriente teórica según Kirchhoff´ [A]} &\textbf{Voltaje teórico según Kirchhoff V= R i [V]} &\textbf{Voltaje en la resistencia, (Medido con Sensor) [V]} &\textbf{Corriente en la resistencia, i’=V’/R [mA]} \\
+      R_{1}= &i_{1}=0.0467 &V_{1}=4.6 &V_{1}’=4.62 &i_{1}’=45.5 \\
+      R_{2}= &i_{2}=0.0354 &V_{2}=5.3 &V_{2}’=5.27 &i_{2}’=34.7 \\
+      R_{3}= &i_{3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+      R_{4}= &i_{4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+      R_{T}= 213.70 &iT= 0.0467 &VT= 10 &V_{T}’=9.91 &i_{T}’=45.5 \\
+      \bottomrule
+    \end{tabular}
+  \end{table} 
+\end{center}
+
+\end{document}
