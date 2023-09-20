@@ -2,8 +2,8 @@ Circuit: * C:\users\eg\Desktop\hdd\Documents\UTN\2023\Dispositivos\TPS\4\Simulac
 
 Direct Newton iteration for .op point succeeded.
 
-Date: Wed Jul 19 11:33:40 2023
-Total elapsed time: 5.475 seconds.
+Date: Sat Sep 16 01:37:42 2023
+Total elapsed time: 4.373 seconds.
 
 tnom = 27
 temp = 27
@@ -13,10 +13,10 @@ traniter = 200034
 tranpoints = 100018
 accept = 100018
 rejected = 0
-matrix size = 4
+matrix size = 2
 fillins = 0
 solver = Normal
 Avg thread counts: 1.0/1.0/1.0/1.0
-Matrix Compiler1: 136 bytes object code size  2.0/2.0/[2.0]
-Matrix Compiler2: 242 bytes object code size  2.0/2.1/[2.1]
+Matrix Compiler1: 54 bytes object code size  2.1/2.1/[2.1]
+Matrix Compiler2: 96 bytes object code size  2.1/2.2/[2.1]
 

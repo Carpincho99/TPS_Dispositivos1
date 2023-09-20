@@ -58,7 +58,7 @@
 \end{enumerate}
 \subsection{Simulación}
 \subsection{Experimental}
-\begin{minipage}{0.3\linewidth}
+\begin{minipage}{0.2\linewidth}
 \begin{tabular}{c|c}
   $V_{E}$ &$I_{E}$  \\
   \hline
@@ -80,10 +80,11 @@
   30  &0 
 \end{tabular}
 \end{minipage}
-\begin{minipage}{0.7\linewidth}
+\begin{minipage}{0.8\linewidth}
 \centering
 \begin{tikzpicture}
   \begin{axis}[
+    width=.9\linewidth,
     xlabel = $V_{E}$,
     ylabel = $I_{E}$,
     grid=major,
@@ -110,7 +111,7 @@
 \end{tikzpicture}
 \end{minipage}
 
-\begin{minipage}{0.3\linewidth}
+\begin{minipage}{0.2\linewidth}
 \begin{tabular}{c|c|c}
   $V_{CC}$ &$V_{B}$ &$I_{B}$  \\
   \hline
@@ -132,10 +133,11 @@
   30  &0  &0  \
 \end{tabular}
 \end{minipage}
-\begin{minipage}{0.7\linewidth}
+\begin{minipage}{0.8\linewidth}
 \centering
 \begin{tikzpicture}
   \begin{axis}[
+    width=.9\linewidth,
     xlabel = $V_{B}$,
     ylabel = $I_{B}$,
     grid=major,
@@ -168,12 +170,16 @@
   \begin{circuitikz}
     \draw (0,0) node[nujt, yscale=-1, xscale=-1](ujt){}
     ;
-    \draw (ujt.B2) to[R, n=r1, l=100\unit{\ohm}] ++(0,2);
-    \draw (ujt.B1) to[R, l=22\unit{\ohm}] ++(0,-2)
+    \draw (ujt.B2) to[R, n=r1, l=100\unit{\ohm}] ++(0,2) coordinate(R100);
+    \draw (ujt.B1) to[R, l=22\unit{\ohm}]++(0,-2) 
     to[short] ++(0,-0.5) node[ground]{}
     ;
-    \draw (ujt.B2) to[short, -o] ++(-1,0);
-    \draw (ujt.B1) to[short, -o] ++(-1,0);
+  \draw (ujt.B2) to[short, -o]++(-1,0) node[anchor=east]{$OUT_1$};
+  \draw (ujt.B1) to[short, -o]++(-1,0)node[anchor=east]{$OUT_2$};
+  \draw (ujt.E) to[short,-*]++(2,0) coordinate(E) to[C, l=47nF]++(0,-2) node[ground]; 
+  \draw (E) to[R, l=4.7K]++(0,2) to[pR, n=POT, l_=100k]++(0,2) coordinate(RPOT) to[short]++(0,1) node[vcc](VCC){$V_{CC}$};
+  \draw (POT.wiper) to[short]++(-0.5,0) to[short]++(0,1) to[short, -*](POT|-RPOT);
+  \draw (R100) to[short]++(0,1) node[vcc](){$V_{CC}$};
   \end{circuitikz}
 \end{center}
 \subsection{Procedimiento}
