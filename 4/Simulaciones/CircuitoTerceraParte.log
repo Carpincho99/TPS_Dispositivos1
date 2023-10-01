@@ -8,8 +8,8 @@ Direct Newton iteration for .op point succeeded.
 .step vgs=-1
 .step vgs=0
 
-Date: Sat Sep 16 01:50:43 2023
-Total elapsed time: 34.874 seconds.
+Date: Thu Sep 21 11:20:08 2023
+Total elapsed time: 6.715 seconds.
 
 tnom = 27
 temp = 27
@@ -19,10 +19,10 @@ traniter = 200034
 tranpoints = 100018
 accept = 100018
 rejected = 0
-matrix size = 6
+matrix size = 4
 fillins = 0
 solver = Normal
 Avg thread counts: 1.0/1.0/1.0/1.0
-Matrix Compiler1: off  [2.8]/3.4/3.6
-Matrix Compiler2: off  [3.1]/4.1/3.6
+Matrix Compiler1:       7 opcodes  0.3/[0.3]/0.6
+Matrix Compiler2: 216 bytes object code size  0.3/0.3/[0.3]
 
