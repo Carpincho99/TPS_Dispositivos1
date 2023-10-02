@@ -37,7 +37,7 @@
     ;
     \draw (ujt.E) to[nos, mirror, invert, l=$L_2$] ++(-2,0)
     to[R] ++(-2,0)
-    to[short] ++(0,1) node[vcc]{$V_{E}$}
+    to[short] ++(0,1) node[vcc]{$V_{EE}$}
     ;
     \draw (ujt.B2) to[R] ++(0,2)
     to[nos, l=$L_1$] ++(0,1)
@@ -51,9 +51,9 @@
   \item Armar el circuito seleccionando un correcto valor de las resistencias en
     función del datasheet del UJT.
   \item Abrir el interruptor L1 y cerrar el interruptor L2.
-  \item Variar la $V_E$ desde 0-30V y medir la corriente $I_E$.
+  \item Variar la $V_{EE}$ desde 0-30V y medir la corriente $I_E$.
   \item Completar la tabla propuesta modificándola si fuera necesario.
-  \item Graficar la curva $I_E= f(V_E)$ con los datos relevados de la tabla.
+  \item Graficar la curva $I_E= f(V_{EE})$ con los datos relevados de la tabla.
   \item Abrir el interruptor L2 y cerrar el interruptor L1.
   \item Variar la VCC desde 0-30V y medir la corriente IB.
   \item Completar la tabla propuesta modificándola si fuera necesario.
@@ -61,25 +61,25 @@
 \subsection{Simulación}
 \subsection{Experimental}
 \begin{minipage}{0.2\linewidth}
-\begin{tabular}{c|c}
-  $V_{E}$ &$I_{E}$  \\
+\begin{tabular}{c|c|c}
+  $V_{EE}$ &$V_{E}$ &$I_{E}$  \\
   \hline
-  0   &0 \\
-  2   &0 \\
-  4   &0 \\
-  6   &0 \\
-  8   &0 \\
-  10  &0 \\
-  12  &0 \\
-  14  &0 \\
-  16  &0 \\
-  18  &0 \\
-  20  &0 \\
-  22  &0 \\
-  24  &0 \\
-  26  &0 \\
-  28  &0 \\
-  30  &0 
+  0   &0  &0 \\
+  2   &0  &0 \\
+  4   &0  &0 \\
+  6   &0  &0 \\
+  8   &0  &0 \\
+  10  &0  &0 \\
+  12  &0  &0 \\
+  14  &0  &0 \\
+  16  &0  &0 \\
+  18  &0  &0 \\
+  20  &0  &0 \\
+  22  &0  &0 \\
+  24  &0  &0 \\
+  26  &0  &0 \\
+  28  &0  &0 \\
+  30  &0  &0 
 \end{tabular}
 \end{minipage}
 \begin{minipage}{0.8\linewidth}
