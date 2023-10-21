@@ -324,7 +324,7 @@
         ]
         \addplot[color=red,
         %skip coords between index={0}{0},
-        ] table [x index=1, y index=2]{./inc/sim/PrimeraParte.txt};
+        ] table [x index=1, y index=2]{./inc/sim/SegundaParte.txt};
       \end{axis}
     \end{tikzpicture}
   \end{center}
@@ -381,5 +381,144 @@
     \end{axis} 
   \end{tikzpicture}
 \end{minipage}
+\section{Tercera Parte}
+\subsection{Circuito}
+Para este terecera parte, se trabajo con el mismo circuito que en la parte anterior.
+\subsection{Procedimiento}
+\begin{enumerate}
+  \item Armar el circuito.
+  \item Completar los valores de la tabla 1 fijando el valor de IG y variando el valor
+        de VCC hasta observar el disparo del SCR. Relevar el valor de VCC, IAK y VAK
+        en el cual se produce el disparo para cada caso 
+  \item Completar los valores de la tabla 2 fijando el valor de IG y variando el valor
+        de VCC. Relevar IAK y VAK para cada caso. Es posible que deba alterar
+        algunos valores de resistencia dependiendo del SCR utilizado.
+\end{enumerate}
+\subsection{Simulación}
+  \begin{figure}[H]
+    \begin{center}
+      %\includegraphics[width=0.5\textwidth, clip, trim=0.5cm 10cm 0.5cm 8cm]{inc/sim/circuits/CircuitoSegundaParte.pdf}
+    \end{center}
+    \caption{Circuito simulado}
+    \label{fig:CircuitoPrimeraParte}
+  \end{figure}
+  \begin{center}
+    \begin{tikzpicture}[
+      ]
+      \begin{axis}[
+        width=\plotScale\linewidth,
+        xlabel=$V_{A_1A_2}$, 
+        ylabel=$I$, 
+        grid=both,
+        thick
+        ]
+        \addplot[color=blue,
+        %skip coords between index={69}{142},
+        ] table [x index=1, y index=3]{./inc/sim/TerceraParte.txt};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+  \subsection{Experimental}
+  \begin{table}[H]
+    \begin{center}
+      \begin{tabular}{c|c|c|c}
+        $I_{G}[\unit{\micro\ampere}]$ &$V_{CC}$ &$I_{AK}$ &$V_{AK}$ \\
+        \hline
+        10 &   &   & \\
+        20 &   &   & \\
+        20 &   &   & \\
+        40 &   &   & \\
+        50 &   &   & \\
+      \end{tabular}
+    \end{center} 
+  \end{table}
+
+  \begin{table}[H]
+    \begin{center}
+      \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $I_{G}\rightarrow$ &\multicolumn{2}{c|}{50} &\multicolumn{2}{c|}{40} &\multicolumn{2}{c|}{30} &\multicolumn{2}{c|}{20} &\multicolumn{2}{c|}{10} \\ 
+        \hline
+        \hline
+        $V_{CC}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$\\ 
+        \hline
+        0    &   &  &  &  &  &  &  &  &  &  \\
+        1    &   &  &  &  &  &  &  &  &  &  \\
+        2    &   &  &  &  &  &  &  &  &  &  \\
+        3    &   &  &  &  &  &  &  &  &  &  \\
+        4    &   &  &  &  &  &  &  &  &  &  \\
+        5    &   &  &  &  &  &  &  &  &  &  \\
+        6    &   &  &  &  &  &  &  &  &  &  \\
+        7    &   &  &  &  &  &  &  &  &  &  \\
+        8    &   &  &  &  &  &  &  &  &  &  \\
+        9    &   &  &  &  &  &  &  &  &  &  \\
+        10   &   &  &  &  &  &  &  &  &  &  \\
+        11   &   &  &  &  &  &  &  &  &  &  \\
+        12   &   &  &  &  &  &  &  &  &  &  \\
+        13   &   &  &  &  &  &  &  &  &  &  \\
+        14   &   &  &  &  &  &  &  &  &  &  \\
+        15   &   &  &  &  &  &  &  &  &  &  \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+
+
+
+\section{Cuarta Parte}
+\subsection{Circuito}
+\begin{center}
+    \begin{circuitikz}[american]
+      \draw (0,0) node[vcc](vcc){20V}
+            to[R=$R_1$, a=3.3\unit{\kilo\ohm}] ++(0,-1.5)
+            to[pR, n=pot, a=5\unit{\kilo\ohm}] ++(0,-4)
+            to[short] ++(0,-0.5) node[ground](gnd1){};
+      \draw (6,0) node[vcc](VCC){$V_{CA}$}
+            to[R=$R_4$, a=4.7\unit{\kilo\ohm}] ++(0,-2.1)
+            to[Ty*,n=tr,mirror, v^=$V_{AK}$] (VCC |- pot.wiper)
+            to[R=$R5$,a=100\unit{\ohm},f^=$I_{AK}$] (VCC|-gnd1) node[ground]{};
+      \draw (tr.gate) to[nos, mirror, invert] ++(-2,0) 
+            to[R=$R_3$, a=4.7\unit{\kilo\ohm}] (pot.wiper);
+    \end{circuitikz}
+  \end{center}
+\subsection{Procedimiento}
+\begin{enumerate}
+  \item Armar el circuito.
+  \item Variar el potenciómetro de forma que VG quede a potencial de cero volts
+        cuando conectemos la fuente de alimentación.
+  \item Colocar la tensión de alimentación alterna en 50 VCC
+  \item Aumentar lentamente la VG observando permanentemente la IG e IA.
+        Determinar el momento donde el dispositivo se dispara.
+  \item Bajar el valor de VG a cero y observar lo que sucede con la IA.
+  \item En función de lo estudiado en el teórico apagar el SCR.
+  \item Subir ahora el valor de VCC a 100V y repetir los pasos 4, 5 y 6.
+  \item Subir ahora el valor de VCC a 150V y repetir los pasos 4, 5 y 6.
+  \item Completar la siguiente tabla de mediciones.
+\end{enumerate}
+\subsection{Simulación}
+  \begin{figure}[H]
+    \begin{center}
+      %\includegraphics[width=0.5\textwidth, clip, trim=0.5cm 10cm 0.5cm 8cm]{inc/sim/circuits/CircuitoSegundaParte.pdf}
+    \end{center}
+    \caption{Circuito simulado}
+    \label{fig:CircuitoPrimeraParte}
+  \end{figure}
+  \begin{center}
+    \begin{tikzpicture}[
+      ]
+      \begin{axis}[
+        width=\plotScale\linewidth,
+        xlabel=$V_{A_1A_2}$, 
+        ylabel=$I$, 
+        grid=both,
+        thick
+        ]
+        \addplot[color=blue,
+        %skip coords between index={69}{142},
+        ] table [x index=1, y index=3]{./inc/sim/CuartaParte.txt};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+  \subsection{Experimental}
 
   \end{document}
