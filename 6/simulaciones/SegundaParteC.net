@@ -1,0 +1,10 @@
+* C:\users\eg\Desktop\hdd\Documents\UTN\2023\Dispositivos\TPS\6\simulaciones\SegundaParteC.asc
+XSCR A 0 G BT151
+V1 N001 0 200
+R1 N001 A 4.7k
+VG N002 0 PWL(0 0 1 5)
+R2 G N002 1k
+.inc /home/eg/.wine/drive_c/users/eg/AppData/Local/LTspice/lib/st_high-temperature_scr_pspice/st_high-temperature_scr.lib
+.tran 0 1 0 20u
+.backanno
+.end
