@@ -38,6 +38,7 @@
 \section{Marco teorico}
 \section{Primera Parte}
 \subsection{Circuito}
+\begin{center}
 \begin{circuitikz}[american]
   \draw (0,0) to[V, l=$V_{CC}$, invert] ++(0,4)
   to[short] ++(3,0) 
@@ -45,6 +46,7 @@
   to[biD*,a=DB3, v^=$V_{A_1A_2}$] ++(0,-2)
   to[short] (0,0) node[ground]{};
 \end{circuitikz}
+\end{center}
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito seleccionando un correcto valor de R en función del
@@ -267,16 +269,16 @@
 \subsection{Circuito}
 \begin{center}
   \begin{circuitikz}[american]
-    \draw (0,0) node[vcc](vcc){20V}
+    \draw (0,0) node[vcc](vcc){44V}
       to[R=$R_1$, a=3.3\unit{\kilo\ohm}] ++(0,-1.5)
       to[pR, n=pot, a=5\unit{\kilo\ohm}] ++(0,-4)
       to[short] ++(0,-0.5) node[ground](gnd1){};
     \draw (6,0) node[vcc](VCC){$V_{CC}$}
-      to[R=$R_4$, a=4.7\unit{\kilo\ohm}] ++(0,-2.1)
-      to[Ty*,n=tr,mirror, v^=$V_{AK}$] (VCC |- pot.wiper)
+      to[R=$R_4$, a=5.8\unit{\kilo\ohm}] ++(0,-2.1)
+      to[Ty*,n=tr,mirror, v^=$V_{AK}$,a=BT151-800R] (VCC |- pot.wiper)
       to[short,f^=$I_{AK}$] (VCC|-gnd1) node[ground]{};
     \draw (tr.gate) to[nos, mirror, invert] ++(-2,0) 
-      to[R=$R_3$, a=4.7\unit{\kilo\ohm}] (pot.wiper);
+      to[R=$R_3$, a=1\unit{\kilo\ohm}] (pot.wiper);
   \end{circuitikz}
 \end{center}
 \subsection{Procedimiento}
@@ -303,6 +305,14 @@
     anotando el valor de IAK para cada caso. Los últimos 10V antes de llegar a cero deben disminuirse en pasos de 1V.
   \item Volver a subir paulatinamente la VCC hasta colocarla nuevamente en 100V
     analizando el comportamiento que tiene la IAK
+  \item Cerrar el interruptor Sw corroborando que los valores de VG e IG sean los
+mismos que se relevaron en el punto 13.
+  \item Analizar que sucedió en IAK cuando se cerró el interruptor Sw.
+  \item Abrir nuevamente el interruptor Sw y volver a observar la IAK.
+  \item Desconectar las tensiones de alimentación sin mover la posición donde
+quedo el potenciómetro e invertir el Ánodo y Cátodo del SCR.
+  \item Volver a conectar las alimentaciones y cerrar el interruptor Sw. Analizar el
+comportamiento en IAK.
 \end{enumerate}
 \subsection{Simulación}
 \subsubsection{Comportamiento de la compuerta}
@@ -411,6 +421,8 @@ Colacando $V_{CC}=0V$
 %Ranodo = 5.8k
 Posteriormente, se colocó $V_{CC}=210V$ y se disparó el SRC tomando las mediciones pertinentes. 
 Luego del disparó, se interumpió $I_G$ y se procedió a disminuir $V_{CC}$ progresivamente hasta apagar el dispositivo.
+\par
+\begin{minipage}{0.3\linewidth}
 \begin{table}[H]
   \begin{center}
     \begin{tabular}{c|c}
@@ -431,22 +443,68 @@ Luego del disparó, se interumpió $I_G$ y se procedió a disminuir $V_{CC}$ pro
     \end{tabular}
   \end{center} 
 \end{table}
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel = $V_{AK}$,
+      ylabel = $I_{AK}$,
+      grid=major,
+      ]
+      \addplot[color=red,mark=*] coordinates {
+          (195 ,28  )  
+          (187 ,26  )
+          (180 ,25.5)
+          (175 ,24.6)
+          (170 ,23.8)
+          (160 ,22.7)
+          (149 ,21  )
+          (140 ,19  )
+          (110 ,12.8)
+          (100 ,11.7)
+          (90  ,10.5)
+          (80  ,9.5 )
+          (80  ,0.5 )
+        };    
+    \end{axis} 
+  \end{tikzpicture}
+\end{minipage}
+\par
+Posteriormente, luego del apagado del SCR, se volvió a conectar la corriente de compuerta,
+manteniendo el potencimetro en la posición previa. Analizando de este modo, que el SCR 
+se encendió nuevamente.
+\par
+Por último, con el potencimetro en la posición de disparo, se invertió la conexiones 
+anodo-catodo del SCR. Así, se logro medir una corriente de fuga inversa de 12.5uA
+\begin{align}
+  I_{RR} = 12.5\unit{\micro\ampere} 
+\end{align}
+
 De esta manera, las mediciones tomadas en este último procedicimento resultan
 \begin{table}[H]
   \begin{center}
     \begin{tabular}{l|c|c|c}
-      \multirow{2}{*}{Parametro} &\multirow{2}{*}{Medido}  &\multicolumn{2}{c}{Datasheet}  \\
+      \multirow{2}{*}{Parametro} &\multirow{2}{*}{Medido @$Vcc=210V$}  &\multicolumn{2}{c}{Datasheet}  \\
       \cline{3-4}
                 &  &TYP. &MAX  \\
       \hline
-      $V_{GT}$  &   &   &  \\
-      $I_{GT}$  &   &   &  \\
-      $V_{T}$   &   &   &  \\
-      $I_{H}$   &   &   &  \\
+      $V_{GT}$  &1V      &0.6V   &1.5V  \\
+      $I_{GT}$  &3.38mA  &2mA   &15mA  \\
+      $V_{T}$   &1V      &1.4V   &1.75V @$I_T=23A$  \\
+      $I_{H}$   &9.50mA  &7mA   &20mA  \\
+      $I_{R}$   &12.5\unit{\micro\ampere} & &
     \end{tabular}
   \end{center} 
 \end{table}
-
+Vale la pena aclarar que, a no ser que se aclare lo contrario, las conidicones para las cuales se especificaron los 
+valores brindados por el fabricante (datasheet) son:
+\begin{itemize}
+  \item $T_j=25ºC$ 
+  \item $V_D=12V$ 
+  \item $I_{GT}=0.1A$ 
+  \item $I_{T}=0.1A$ 
+\end{itemize}
 
 \section{Tercera Parte}
 \subsection{Circuito}
@@ -463,39 +521,77 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
 \end{enumerate}
 \subsection{Experimental}
 %44V del lado del pote
+% \begin{table}[H]
+%   \begin{center}
+%     \begin{tabular}{c|c|c|c}
+%       $I_{G}[\unit{\milli\ampere}]$ &$V_{CC}$ &$I_{AK}$ &$V_{AK}$ \\
+%       \hline
+%       4    &14  &5.70   &0.69 \\
+%       4.5  &2   &5.20   &0.66 \\
+%     \end{tabular}
+%   \end{center} 
+% \end{table}
+
+\begin{minipage}{0.3\linewidth}
 \begin{table}[H]
   \begin{center}
-    \begin{tabular}{c|c|c|c}
-      $I_{G}[\unit{\milli\ampere}]$ &$V_{CC}$ &$I_{AK}$ &$V_{AK}$ \\
+    \begin{tabular}{|l|c|c|c|c|}
       \hline
-      4    &14  &5.70   &0.69 \\
-      4.5  &2   &5.20   &0.66 \\
-    \end{tabular}
-  \end{center} 
-\end{table}
-\begin{table}[H]
-  \begin{center}
-    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
-      \hline
-      $I_{G}\rightarrow$ &\multicolumn{2}{c|}{4mA} &\multicolumn{2}{c|}{3.35} &\multicolumn{2}{c|}{3.65} &\multicolumn{2}{c|}{20} &\multicolumn{2}{c|}{10} \\ 
+      $I_{G}\rightarrow$  &\multicolumn{2}{c|}{3.35 mA} &\multicolumn{2}{c|}{3.65 mA}  \\ 
       \hline
       \hline
-      $V_{CC}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$\\ 
+      $V_{CC}$  &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ \\ 
       \hline
-      0    &   &  &0     &3.40    &0    &3.6   &  &  &  \\
-      1    &   &  &0.60  &3.50    &0.6  &3.62  &  &  &  \\
-      2    &   &  &1     &3.55    &0.73 &3.70  &  &  &  \\
-      3    &   &  &1.60  &3.57    &1.09 &3.90  &  &  &  \\
-      4    &   &  &2.33  &3.60    &1.1  &3.90  &  &  &  \\
-      5    &   &  &2.46  &3.72    &1.33 &4     &  &  &  \\
-      6    &   &  &2.50  &3.75    &1.35 &4.10  &  &  &  \\
-      7    &   &  &2.81  &3.9     &1.25 &4.12  &  &  &  \\
-      8    &   &  &0.67  &4.62    &0.75 &4.36     &  &  &  \\
+      0     &0     &3.40    &0    &3.6    \\
+      1     &0.60  &3.50    &0.6  &3.62   \\
+      2     &1     &3.55    &0.73 &3.70   \\
+      3     &1.60  &3.57    &1.09 &3.90   \\
+      4     &2.33  &3.60    &1.1  &3.90   \\
+      5     &2.46  &3.72    &1.33 &4      \\
+      6     &2.50  &3.75    &1.35 &4.10   \\
+      7     &2.81  &3.9     &1.25 &4.12   \\
+      8     &0.67  &4.62    &0.75 &4.36   \\
+      9     &0.69  &5.60    &0.79 &5.30   \\
       \hline
     \end{tabular}
   \end{center}
 \end{table}
-
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+\centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel = $V_{AK}$,
+      ylabel = $I_{AK}$,
+      grid=major,
+      ]
+      \addplot[color=red,mark=*] coordinates {
+          (0    ,3.40 )  
+          (0.60 ,3.50 )
+          (1    ,3.55 )
+          (1.60 ,3.57 )
+          (2.33 ,3.60 )
+          (2.46 ,3.72 )
+          (2.60 ,3.75 )
+          (2.81 ,3.9  )
+          (0.67 ,4.62 )
+          (0.69 ,5.62 )
+        };    
+      \addplot[color=blue,mark=*] coordinates {
+          (0    ,3.6 )  
+          (0.6  ,3.62)
+          (0.73 ,3.70)
+          (1.09 ,3.90)
+          (1.1  ,3.90)
+          (1.33 ,4   )
+          (1.35 ,4.10)
+          (1.25 ,4.12)
+          (0.75 ,4.36)
+          (0.78 ,5.36)
+        };
+    \end{axis} 
+  \end{tikzpicture}
+\end{minipage}
 
 
 \section{Cuarta Parte}
@@ -508,7 +604,7 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
       to[short] ++(0,-0.5) node[ground](gnd1){};
     \draw (6,0) node[vcc](VCC){$V_{CA}$}
       to[R=$R_4$, a=4.7\unit{\kilo\ohm}] ++(0,-2.1)
-      to[Ty*,n=tr,mirror, v^=$V_{AK}$] (VCC |- pot.wiper)
+      to[Ty*,n=tr,mirror, v^=$V_{AK}$,a=BT151-800R] (VCC |- pot.wiper)
       to[R=$R5$,a=100\unit{\ohm},f^=$I_{AK}$] (VCC|-gnd1) node[ground]{};
     \draw (tr.gate) to[nos, mirror, invert] ++(-2,0) 
       to[R=$R_3$, a=4.7\unit{\kilo\ohm}] (pot.wiper);
@@ -555,29 +651,28 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
 \subsection{Experimental}
 \begin{table}[H]
   \begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|c|c|c|}
       \hline
-      \multicolumn{3}{|c|}{$V_{CC}=50$} &\multicolumn{3}{c|}{$V_{CC}=100$} &\multicolumn{3}{c|}{$V_{CC}=150$} \\ 
+      $V_{CC}\rightarrow$ &\multicolumn{2}{|c|}{$V_{CC}=50$} &\multicolumn{2}{c|}{$V_{CC}=100$} &\multicolumn{2}{c|}{$V_{CC}=150$} \\ 
       \hline
       \hline
-      $V_{1}$ &$I_G$ &$I_A$ &$V_1$ &$I_G$ &$I_A$ &$V_1$ &$I_G$ &$I_K$ \\ 
+      $V_{G}$ &$I_G$ &$I_A$ &$I_G$ &$I_A$  &$I_G$ &$I_A$ \\ 
       \hline
-      0    &   &  &  &  &  &  &  &   \\
-      1    &   &  &  &  &  &  &  &   \\
-      2    &   &  &  &  &  &  &  &   \\
-      3    &   &  &  &  &  &  &  &   \\
-      4    &   &  &  &  &  &  &  &   \\
-      5    &   &  &  &  &  &  &  &   \\
-      6    &   &  &  &  &  &  &  &   \\
-      7    &   &  &  &  &  &  &  &   \\
-      8    &   &  &  &  &  &  &  &   \\
-      9    &   &  &  &  &  &  &  &   \\
-      10   &   &  &  &  &  &  &  &   \\
-      11   &   &  &  &  &  &  &  &   \\
-      12   &   &  &  &  &  &  &  &   \\
-      13   &   &  &  &  &  &  &  &   \\
-      14   &   &  &  &  &  &  &  &   \\
-      15   &   &  &  &  &  &  &  &   \\
+      0     &0     &0    &0    &0     &0     &0      \\
+      0.25  &0.90  &0.90 &0.88 &0.88  &0.86  &0.86   \\
+      0.50  &1.72  &1.72 &1.83 &1.83  &1.80  &1.80   \\
+      0.75  &2.64  &2.64 &2.60 &2.60  &2.58  &2.58   \\
+      1     &3.52  &3.52 &3.50 &3.50  &3.48  &3.48   \\
+      1.40  &3.52  &6.56 &-    &-     &-     &-      \\
+      1.50  &4.45  &7.22 &-    &-     &-     &-      \\
+      1.55  &4.93  &7.56 &-    &-     &-     &-      \\
+      1.70  &-     &-    &3.30 &9.36  &-     &-      \\
+      1.70  &-     &-    &3.77 &9.86  &-     &-      \\
+      1.80  &-     &-    &7.74 &10.47 &-     &-      \\
+      1.90  &-     &-    &-    &-     &-     &-      \\
+      2     &-     &-    &-    &-     &3.11  &12     \\
+      2.10  &-     &-    &-    &-     &3.40  &12.60  \\
+      2.20  &-     &-    &-    &-     &4.40  &13.39  \\
       \hline
     \end{tabular}
   \end{center}
@@ -589,14 +684,15 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
 
 \section{Quinta Parte}
 \subsection{Circuito}
+%potencimetro 5k
 \begin{center}
   \begin{circuitikz}[american]
     \ctikzset{bipoles/border margin=1}
-    \draw (0,0) node[vcc](vcc){$V_{CC}$} 
+    \draw (0,0) node[vcc](vcc){$V_{AC}$} 
       to[R=$R_6$, a=4.7\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
-      to[Tr*, mirror, n=triac]++(0,-4)
+      to[Tr*, mirror, n=triac, l=BT136]++(0,-4)
       to[short, -*]++(0,-1) node[ground](gnd){};
-    \draw (triac.G) to[biD*, a=DB3]++(-2,0) --++(-0.5,0) node[potentiometershape, anchor=wiper, rotate=-90](pot){};
+    \draw (triac.G) to[biD*, a=DB3]++(-2,0) --++(-0.5,0) node[potentiometershape, anchor=wiper, rotate=-90, name=5\unit{\kilo\ohm}](pot){5\unit{\kilo\ohm}};
     \draw (pot) to[short]++(0,2) coordinate(A) to[short,-*](R6|-A);
     \draw (pot) to[short]++(0,-2) coordinate(B) to[short,-*](gnd|-B);
   \end{circuitikz}
