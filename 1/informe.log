@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.9)  17 APR 2023 14:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.10.18)  18 NOV 2023 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -400,7 +400,7 @@ Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS)
 Package: babel 2023/02/13 3.86 The Babel package
 \babel@savecnt=\count285
 \U@D=\dimen268
-\l@unhyphenated=\language87
+\l@unhyphenated=\language3
 
 (/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read3
@@ -408,14 +408,23 @@ Package: babel 2023/02/13 3.86 The Babel package
 
 (/usr/share/texmf-dist/tex/generic/babel-spanish/spanish.ldf
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+
+
+Package babel Warning: No hyphenation patterns were preloaded for
+(babel)                the language 'Spanish' into the format.
+(babel)                Please, configure your TeX system to add them and
+(babel)                rebuild the format. Now I will use the patterns
+(babel)                preloaded for \language=0 instead on input line 51.
+
+Package babel Info: Hyphen rules for 'spanish' set to \l@english
+(babel)             (\language0). Reported on input line 52.
 \es@quottoks=\toks33
 \es@quotdepth=\count287
 Package babel Info: Making " an active character on input line 570.
 Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
-))
-(/usr/share/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex
+)) (/usr/share/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex
 Package babel Info: Importing font and identification data for spanish
 (babel)             from babel-es.ini. Reported on input line 11.
 )
@@ -733,11 +742,6 @@ LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 31.
 [2
 
  <./inc/COPYlogo-utn.png>]
-Overfull \hbox (12.5164pt too wide) in paragraph at lines 33--34
-[]\T1/ppl/m/n/12 En es-te tra-ba-jo pr�c-ti-co de la-bo-ra-to-rio im-ple-men-ta
--re-mos las le-yes de Ohm y Kirchhoff
- []
-
 
 LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 34.
 
@@ -961,20 +965,285 @@ l.144       R_{2}= &i_{2}=0.0354 &
 l.144       R_{2}= &i_{2}=0.0354 &V_
                                     {2}=5.3 &V_{2}’=5.27 &i_{2}’=34.7 \\
 ? 
-! Emergency stop.
+! Missing $ inserted.
 <inserted text> 
                 $
-l.144       R_{2}= &i_{2}=0.0354 &V_
-                                    {2}=5.3 &V_{2}’=5.27 &i_{2}’=34.7 \\
-End of file on the terminal!
+l.144       R_{2}= &i_{2}=0.0354 &V_{2}=5.3 &
+                                             V_{2}’=5.27 &i_{2}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.144       R_{2}= &i_{2}=0.0354 &V_{2}=5.3 &V_
+                                               {2}’=5.27 &i_{2}’=34.7 \\
+? 
 
- 
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 144.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.144 ...&i_{2}=0.0354 &V_{2}=5.3 &V_{2}’=5.27 &
+                                                  i_{2}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.144 ..._{2}=0.0354 &V_{2}=5.3 &V_{2}’=5.27 &i_
+                                                  {2}’=34.7 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 144.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R
+             _{3}= &i_{3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_
+              {3}= &i_{3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_{3}= &
+                    i_{3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_{3}= &i_
+                      {3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_{3}= &i_{3}=0.0113 &
+                                  V_{3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_{3}= &i_{3}=0.0113 &V_
+                                    {3}=2.26 &V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_{3}= &i_{3}=0.0113 &V_{3}=2.26 &
+                                              V_{3}’=2.22 &i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145       R_{3}= &i_{3}=0.0113 &V_{3}=2.26 &V_
+                                                {3}’=2.22 &i_{3}’=11.1 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 145.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145 ...i_{3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &
+                                                  i_{3}’=11.1 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.145 ...{3}=0.0113 &V_{3}=2.26 &V_{3}’=2.22 &i_
+                                                  {3}’=11.1 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 145.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R
+             _{4}= &i_{4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_
+              {4}= &i_{4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_{4}= &
+                    i_{4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_{4}= &i_
+                      {4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_{4}= &i_{4}=0.0113 &
+                                  V_{4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_{4}= &i_{4}=0.0113 &V_
+                                    {4}=3.056 &V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_{4}= &i_{4}=0.0113 &V_{4}=3.056 &
+                                               V_{4}’=3 &i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146       R_{4}= &i_{4}=0.0113 &V_{4}=3.056 &V_
+                                                 {4}’=3 &i_{4}’=34.7 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 146.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146 ... &i_{4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &
+                                                  i_{4}’=34.7 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.146 ...i_{4}=0.0113 &V_{4}=3.056 &V_{4}’=3 &i_
+                                                  {4}’=34.7 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 146.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.147       R
+             _{T}= 213.70 &iT= 0.0467 &VT= 10 &V_{T}’=9.91 &i_{T}’=45.5 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.147       R_
+              {T}= 213.70 &iT= 0.0467 &VT= 10 &V_{T}’=9.91 &i_{T}’=45.5 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.147       R_{T}= 213.70 &
+                           iT= 0.0467 &VT= 10 &V_{T}’=9.91 &i_{T}’=45.5 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.147       R_{T}= 213.70 &iT= 0.0467 &VT= 10 &V_
+                                                 {T}’=9.91 &i_{T}’=45.5 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 147.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.147 ...3.70 &iT= 0.0467 &VT= 10 &V_{T}’=9.91 &
+                                                  i_{T}’=45.5 \\
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.147 ...70 &iT= 0.0467 &VT= 10 &V_{T}’=9.91 &i_
+                                                  {T}’=45.5 \\
+? 
+
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 147.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.148       \bottomrule
+                       
+? 
+
+LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 153.
+
+File: ./inc/COPYlogo-utn.png Graphic file (type png)
+<use ./inc/COPYlogo-utn.png>
+Package pdftex.def Info: ./inc/COPYlogo-utn.png  used on input line 153.
+(pdftex.def)             Requested size: 42.67912pt x 50.10168pt.
+
+Overfull \hbox (20.77052pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 153.
+
+[7
+
+]
+
+LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 153.
+
+File: ./inc/COPYlogo-utn.png Graphic file (type png)
+<use ./inc/COPYlogo-utn.png>
+Package pdftex.def Info: ./inc/COPYlogo-utn.png  used on input line 153.
+(pdftex.def)             Requested size: 42.67912pt x 50.10168pt.
+
+Overfull \hbox (20.77052pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 153.
+
+[8{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+enddocument/afterlastpage: lastpage setting LastPage.
+(./informe.aux
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package lastpage Warning: Rerun to get the references right on input line 153.
+
+ ) 
 Here is how much of TeX's memory you used:
- 20893 strings out of 476025
- 460168 string characters out of 5796533
- 1861388 words of memory out of 5000000
- 40966 multiletter control sequences out of 15000+600000
- 566069 words of font info for 144 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 89i,18n,92p,514b,673s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 20910 strings out of 477985
+ 460432 string characters out of 5840057
+ 1871388 words of memory out of 5000000
+ 40725 multiletter control sequences out of 15000+600000
+ 567001 words of font info for 146 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 89i,18n,92p,514b,673s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/font
+s/type1/public/mathpazo/fplmr.pfb></usr/share/texmf-dist/fonts/type1/public/mat
+hpazo/fplmri.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrb1200.pf
+b></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texmf-
+dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/type1/urw
+/palatino/uplri8a.pfb>
+Output written on informe.pdf (8 pages, 98556 bytes).
+PDF statistics:
+ 80 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -10,6 +10,8 @@
 \usepackage{circuitikz}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\pgfuseplotmark{square*}
+\pgfuseplotmark{triangle*}
 \pgfplotsset{compat=1.18}\instituto{Universidad Tecnológica Nacional\\Facultad Regional Córdoba}
 \usetikzlibrary{calc, positioning}
 
@@ -367,7 +369,7 @@ comportamiento en IAK.
 \end{center}
 
 \subsection{Experimental} %Alimentamos con 30V el div ressitivo
-Colacando $V_{CC}=0V$ 
+Colocando $V_{CC}=0V$ 
 \par 
 \begin{minipage}{0.3\linewidth}
   \centering
@@ -472,15 +474,14 @@ Luego del disparó, se interumpió $I_G$ y se procedió a disminuir $V_{CC}$ pro
 \end{minipage}
 \par
 Posteriormente, luego del apagado del SCR, se volvió a conectar la corriente de compuerta,
-manteniendo el potencimetro en la posición previa. Analizando de este modo, que el SCR 
+manteniendo el potenciómetro en la posición previa. Analizando de este modo, que el SCR 
 se encendió nuevamente.
 \par
-Por último, con el potencimetro en la posición de disparo, se invertió la conexiones 
-anodo-catodo del SCR. Así, se logro medir una corriente de fuga inversa de 12.5uA
+Por último, con el potenciómetro en la posición de disparo, se invertió la conexiones 
+anodo-catodo del SCR. Así, se logró medir una corriente de fuga inversa de 12.5uA
 \begin{align}
   I_{RR} = 12.5\unit{\micro\ampere} 
 \end{align}
-
 De esta manera, las mediciones tomadas en este último procedicimento resultan
 \begin{table}[H]
   \begin{center}
@@ -508,7 +509,7 @@ valores brindados por el fabricante (datasheet) son:
 
 \section{Tercera Parte}
 \subsection{Circuito}
-Para este terecera parte, se trabajo con el mismo circuito que en la parte anterior.
+Para este tercera parte, se trabajó con el mismo circuito que en la parte anterior.
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito.
@@ -563,6 +564,7 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
     \begin{axis}[
       xlabel = $V_{AK}$,
       ylabel = $I_{AK}$,
+      scaled y ticks=base 10:3,
       grid=major,
       ]
       \addplot[color=red,mark=*] coordinates {
@@ -603,7 +605,7 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
       to[pR, n=pot, a=5\unit{\kilo\ohm}] ++(0,-4)
       to[short] ++(0,-0.5) node[ground](gnd1){};
     \draw (6,0) node[vcc](VCC){$V_{CA}$}
-      to[R=$R_4$, a=4.7\unit{\kilo\ohm}] ++(0,-2.1)
+      to[R=$R_4$, a=5.8\unit{\kilo\ohm}] ++(0,-2.1)
       to[Ty*,n=tr,mirror, v^=$V_{AK}$,a=BT151-800R] (VCC |- pot.wiper)
       to[R=$R5$,a=100\unit{\ohm},f^=$I_{AK}$] (VCC|-gnd1) node[ground]{};
     \draw (tr.gate) to[nos, mirror, invert] ++(-2,0) 
@@ -625,29 +627,6 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
   \item Completar la siguiente tabla de mediciones.
 \end{enumerate}
 \subsection{Simulación}
-\begin{figure}[H]
-  \begin{center}
-    %\includegraphics[width=0.5\textwidth, clip, trim=0.5cm 10cm 0.5cm 8cm]{inc/sim/circuits/CircuitoSegundaParte.pdf}
-  \end{center}
-  \caption{Circuito simulado}
-  \label{fig:CircuitoPrimeraParte}
-\end{figure}
-\begin{center}
-  \begin{tikzpicture}[
-    ]
-    \begin{axis}[
-      width=\plotScale\linewidth,
-      xlabel=$V_{A_1A_2}$, 
-      ylabel=$I$, 
-      grid=both,
-      thick
-      ]
-      \addplot[color=blue,
-        %skip coords between index={69}{142},
-        ] table [x index=1, y index=3]{./inc/sim/CuartaParte.txt};
-    \end{axis}
-  \end{tikzpicture}
-\end{center}
 \subsection{Experimental}
 \begin{table}[H]
   \begin{center}
@@ -678,10 +657,6 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
   \end{center}
 \end{table}
 
-
-
-
-
 \section{Quinta Parte}
 \subsection{Circuito}
 %potencimetro 5k
@@ -689,7 +664,7 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
   \begin{circuitikz}[american]
     \ctikzset{bipoles/border margin=1}
     \draw (0,0) node[vcc](vcc){$V_{AC}$} 
-      to[R=$R_6$, a=4.7\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
+      to[R=$R_6$, a=5\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
       to[Tr*, mirror, n=triac, l=BT136]++(0,-4)
       to[short, -*]++(0,-1) node[ground](gnd){};
     \draw (triac.G) to[biD*, a=DB3]++(-2,0) --++(-0.5,0) node[potentiometershape, anchor=wiper, rotate=-90, name=5\unit{\kilo\ohm}](pot){5\unit{\kilo\ohm}};
@@ -711,68 +686,167 @@ Para este terecera parte, se trabajo con el mismo circuito que en la parte anter
   \item Completar la siguiente tabla de mediciones.
 \end{enumerate}
 \subsection{Simulación}
+%Usamos 5k
 \subsection{Experimental}
 \begin{table}[H]
   \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
       \hline
-      \multicolumn{3}{|c|}{$V_{CC}=50$} &\multicolumn{3}{c|}{$V_{CC}=100$} &\multicolumn{3}{c|}{$V_{CC}=150$} \\ 
+      $V_{CC}\rightarrow $&\multicolumn{2}{|c|}{$V_{AC}=50$} &\multicolumn{2}{c|}{$V_{AC}=75$} &\multicolumn{2}{c|}{$V_{AC}=90$} &\multicolumn{2}{c|}{$V_{AC}=105$}\\ 
       \hline
       \hline
-      $V_{1}$ &$I_G$ &$I_A$ &$V_1$ &$I_G$ &$I_A$ &$V_1$ &$I_G$ &$I_K$ \\ 
+      $V_{1}$ &$I_G$ &$I_A$  &$I_G$ &$I_A$  &$I_G$ &$I_K$  &$I_G$ &$I_K$\\ 
       \hline
-      0    &   &  &  &  &  &  &  &   \\
-      1    &   &  &  &  &  &  &  &   \\
-      2    &   &  &  &  &  &  &  &   \\
-      3    &   &  &  &  &  &  &  &   \\
-      4    &   &  &  &  &  &  &  &   \\
-      5    &   &  &  &  &  &  &  &   \\
-      6    &   &  &  &  &  &  &  &   \\
-      7    &   &  &  &  &  &  &  &   \\
-      8    &   &  &  &  &  &  &  &   \\
-      9    &   &  &  &  &  &  &  &   \\
-      10   &   &  &  &  &  &  &  &   \\
-      11   &   &  &  &  &  &  &  &   \\
-      12   &   &  &  &  &  &  &  &   \\
-      13   &   &  &  &  &  &  &  &   \\
-      14   &   &  &  &  &  &  &  &   \\
-      15   &   &  &  &  &  &  &  &   \\
-      \hline
+      0    &0      &0        &176u    &10.2m   &100u   &15.6m &79.8u    &18.8m    \\
+      5    &5.10u  &5.10u    &548u    &7.08m   &268u   &12.0m &139.7u   &16.09m   \\
+      10   &9.80u  &9.80u    &224u    &3.85m   &-      &-     &300.2u   &13.44m   \\
+      15   &15.10u &15.10u   &14.9u   &14.9u   &473u   &8.35m &-        &-        \\
+      20   &20.60u &20.60u   &20.3u   &20.3u   &20.2u  &20.2u &-        &-        \\
+      23   &22.80u &22.80u   &23.1u   &23.1u   &23.1u  &23.1u &440u     &9.32m    \\
+      30   &-      &-        &30.4u   &30.4u   &30.4u  &30.4u &30.5u    &30.5u    \\
+      34   &-      &-        &34.6u   &34.6u   &34.6.u &34.6u &34.9u    &34.9u    \\
+      40   &       &         &        &        &40.6u  &40.6u &40.6u    &40.6u    \\
+            \hline
     \end{tabular}
   \end{center}
 \end{table}
+De esta manera los momentos en los que el triac se dispara son:
+\begin{enumerate}
+  \item Para @$V_{CC}=50V$: No se disparó \\
+  \item Para @$V_{CC}=75V$ 
+    \begin{align}
+      V_{GT} &= 10V - V_{T_{\text{Diac}}}  \\
+      I_{GT} &= 188u \\
+      I_{A}  &= 0.25mA 
+    \end{align}
+  \item Para @$V_{CC}=90V$ 
+    \begin{align}
+      V_{GT} &= 16.8V - V_{T_{\text{Diac}}}  \\
+      I_{GT} &= 430u \\
+      I_{A}  &=  8.07mA 
+    \end{align}
+  \item Para @$V_{CC}=105V$ 
+    \begin{align}
+      V_{GT} &= 24.3V - V_{T_{\text{Diac}}}  \\
+      I_{GT} &= 223u \\
+      I_{A}  &= 8.50mA 
+    \end{align}
+\end{enumerate}
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel = $I_{G}$,
+      ylabel = $I_{A}$,
+      grid=major,
+      scaled y ticks=base 10:3,
+      legend pos=outer north east
+      ]
+      \addplot[color=red, mark=*] coordinates {
+          (0       ,0       )  
+          (5.10e-6 ,5.10e-6 )
+          (9.80e-6 ,9.80e-6 )
+          (15.10e-6,15.10e-6)
+          (20.60e-6,20.60e-6)
+          (22.80e-6,22.80e-6)
+        };    
+      \addplot[color=blue, mark={square*}] coordinates {
+          (176e-6  ,  10e-3)  
+          (548e-6  ,7.08e-3)
+          (224e-6  ,3.85e-3)
+          (14.9e-6 ,14.9e-6)
+          (20.3e-6 ,20.3e-6)
+          (23.1e-6 ,23.1e-6)
+          (30.4e-6 ,30.4e-6)
+          (34.6e-6 ,34.6e-6)
+        };
+      \addplot[color=brown, mark={triangle*}] coordinates {
+          (100e-6   ,15.6e-3)  
+          (268e-6   ,12.0e-3)
+          (473e-6   ,8.35e-3)
+          (20.2e-6  ,20.2e-6)
+          (23.1e-6  ,23.1e-6)
+          (30.4e-6  ,30.4e-6)
+          (34.6e-6  ,34.6e-6)
+          (40.6e-6  ,40.6e-6)
+        };         
+     \addplot[color=violet, mark=x] coordinates {
+          (79.8e-6   ,18.8e-3  )  
+          (139.7e-6  ,16.09e-3 )
+          (300.2e-6  ,13.44e-3 )
+          (440e-6    , 9.32e-3 )
+          (30.5e-6   , 30.5e-6 )
+          (34.9e-6   , 34.9e-6 )
+          (40.6e-6   , 40.6e-6 )
+        };              
+      \legend{
+          $V_{CC}=50V$,
+          $V_{CC}=75V$,
+          $V_{CC}=90V$,
+          $V_{CC}=105V$,
+        }
+    \end{axis}          
+  \end{tikzpicture}
+\end{center}
 
-
-\section{Sexta Parte}
+\section{Séptima Parte}
 \subsection{Circuito}
 \begin{center}
   \begin{circuitikz}[american]
-    \ctikzset{diodes/scale=0.6}
-    \draw (0,0) node[vcc](vcc){$V_{CA}$} 
-      to[R=$R_6$, a=4.7\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
-      to[Tr*, mirror, n=triac]++(0,-4)
-      to[short, -*]++(0,-0.5) node[ground](gnd){};
-    \draw (triac.G) to[vR, mirror, invert, a=5\unit{\kilo\ohm}]++(-2,0) --++(-0.5,0) coordinate(A);
-    \draw (A) to[D*,a^=1N4007,invert]++(0,2) coordinate(B) to[short](R6|-B);
-    \draw (A) to[D*,a=1N4007,invert](A|-gnd) coordinate(C) to[short](gnd|-C);
+    \ctikzset{bipoles/border margin=1}
+    \draw (0,0) node[vcc](vcc){$V_{AC}$} 
+      to[R=$R_6$, a=5\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
+      to[Tr*, mirror, n=triac, l=BT136]++(0,-4)
+      to[R,a=100\unit{\ohm}]++(0,-2) node[ground](gnd){};
+    \draw (triac.G) to[biD*, a=DB3]++(-2,0) to[R,a=220\unit{\ohm}]++(-2,0) --++(-0.5,0) node[potentiometershape, anchor=wiper, rotate=-90, name=5\unit{\kilo\ohm}](pot){5\unit{\kilo\ohm}};
+    \draw (pot) to[R,a=2.2\unit{\kilo\ohm}]++(0,3) coordinate(A) to[short,-*](R6|-A);
+    \draw (pot) to[C,a=0.1\unit{\micro\farad}]++(0,-3) coordinate(B) to[short,-*](gnd|-B);
   \end{circuitikz}
 \end{center}
-\subsection{Procedimiento}
-\begin{enumerate}
-  \item Armar el circuito y conectar el osciloscopio en paralelo al Triac.
-  \item Llevar el potenciómetro hacia el valor óhmico más alto.
-  \item Observar y graficar la forma de onda observada en el osciloscopio.
-  \item Variar el valor del potenciómetro mientras se observa la forma de onda en
-    el osciloscopio. Graficar al menos 2 graficas adicionales a las del punto 3 en
-    diferentes posiciones del potenciómetro.
-  \item Observar y medir con el osciloscopio el valor de la IH que produce el
-    apagado del TRIAC al final de cada semiciclo.
+\section{Procedimiento}
+\begin{itemize}
+  \item  Procedimiento
+  \item Armar el circuito.
+  \item Llevar el potenciómetro hacia un extremo y medir la forma de onda en RL y
+  luego entre ambos ánodos del TRIAC.
+  \item Colocar el potenciómetro en su posición media y medir la forma de onda en
+  RL y luego entre ambos ánodos del TRIAC.
+  \item Colocar el potenciómetro hacia el otro extremo y medir la forma de onda en
+  RL y luego entre ambos ánodos del TRIAC.
+\end{itemize}
 
-\end{enumerate}
+\section{Octava Parte}
 \subsection{Simulación}
+\begin{figure}
+  \begin{center}
+    %\includegraphics[width=0.95\textwidth]{}
+  \end{center}
+  \caption{Circuito simulado}\label{fig:}
+\end{figure}
+\begin{center}
+  \begin{tikzpicture}[
+    ]
+    \begin{axis}[
+      width=\plotScale\linewidth,
+      xlabel=$t$, 
+      ylabel=$V_{A_1}$, 
+      grid=both,
+      thick
+      ]
+      \addplot[color=red,
+        %skip coords between index={0}{291},
+        skip coords between index={291}{1196},
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+      \addplot[color=blue,
+        skip coords between index={0}{291},
+        skip coords between index={670}{1196},
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+      \addplot[color=green,
+        skip coords between index={0}{670},
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
 
-\subsection{Experimental}
-
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
 
 
 \end{document}

@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción}{3}{}%
+\contentsline {section}{\numberline {2}Marco Teórico}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Ley de Ohm}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Ley de Kirchhoff de las tensiones}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Ley de Kirchhoff de las corrientes}{4}{}%
+\contentsline {section}{\numberline {3}Materiales}{5}{}%
+\contentsline {subsection}{\numberline {3.1}Componentes}{5}{}%
+\contentsline {subsection}{\numberline {3.2}Herramientas}{5}{}%
+\contentsline {subsection}{\numberline {3.3}Instrumentos}{5}{}%
+\contentsline {section}{\numberline {4}Procedimiento}{6}{}%
+\contentsline {section}{\numberline {5}Cálculo, Mediciones, Gráficos, Programa}{7}{}%
+\contentsline {subsection}{\numberline {5.1}Circuito 1}{7}{}%
