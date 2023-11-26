@@ -16,7 +16,6 @@
 \pgfuseplotmark{square*}
 \pgfuseplotmark{triangle*}
 \pgfplotsset{compat=1.18}
-\usetikzlibrary{calc, positioning}
 
 
 \instituto{Universidad Tecnológica Nacional\\Facultad Regional Córdoba}
@@ -43,6 +42,7 @@
 \section{Marco teorico}
 \section{Primera Parte}
 \subsection{Circuito}
+\begin{figure}[H]
 \begin{center}
 \begin{circuitikz}[american]
   \draw (0,0) to[V, l=$V_{CC}$, invert] ++(0,4)
@@ -52,6 +52,8 @@
   to[short] (0,0) node[ground]{};
 \end{circuitikz}
 \end{center}
+\caption{Circuito Primera Parte}
+\end{figure}
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito seleccionando un correcto valor de R en función del
@@ -66,30 +68,33 @@
 \subsection{Simulación}
 \begin{figure}[H]
   \begin{center}
-    %\includegraphics[width=0.5\textwidth, clip, trim=0.5cm 10cm 0.5cm 8cm]{inc/sim/circuits/CircuitoSegundaParte.pdf}
+    \includegraphics[width=0.9\textwidth, clip, trim=2cm 10cm 4cm 12cm]{inc/sim/PrimeraParte.pdf}
   \end{center}
   \caption{Circuito simulado}
   \label{fig:CircuitoPrimeraParte}
 \end{figure}
-\begin{center}
+\begin{figure}[H]
+\centering
   \begin{tikzpicture}[
     ]
     \begin{axis}[
       width=\plotScale\linewidth,
       xlabel=$V_{A_1A_2}$, 
       ylabel=$I$, 
+      scaled y ticks=base 10:3,
       grid=both,
       thick
       ]
       \addplot[color=red,
-        skip coords between index={0}{71},
+       skip coords between index={0}{71},
         ] table [x index=1, y index=3]{./inc/sim/PrimeraParte.txt};
       \addplot[color=blue,
         skip coords between index={69}{142},
         ] table [x index=1, y index=3]{./inc/sim/PrimeraParte.txt};
     \end{axis}
   \end{tikzpicture}
-\end{center}
+  \caption{Resultados simulación}
+\end{figure}
 \subsection{Experimental}
 % \begin{table}[H]
 %   \begin{center}
@@ -125,15 +130,15 @@
         $V_{CC}$ &$V_{A_1A_2}$ &$I$  \\
         \hline
         5     &5    &0     \\
-        10    &10   &1    uA\\
-        15    &15   &1.5  uA\\
-        20    &20   &2    uA\\
-        22    &22   &2.2  uA\\
-        24    &24   &2.4  uA\\
-        26    &26   &2.6  uA\\
-        28    &28   &2.7  uA\\
-        30    &30   &3    uA\\
-        32    &32   &3.2  uA\\
+        10    &10   &1    $\mu$A\\
+        15    &15   &1.5  $\mu$A\\
+        20    &20   &2    $\mu$A\\
+        22    &22   &2.2  $\mu$A\\
+        24    &24   &2.4  $\mu$A\\
+        26    &26   &2.6  $\mu$A\\
+        28    &28   &2.7  $\mu$A\\
+        30    &30   &3    $\mu$A\\
+        32    &32   &3.2  $\mu$A\\
         33.4  &23.2 &10.5 mA\\
         34    &23.2 &11.1 mA\\
         35    &23.0 &12.3 mA\\
@@ -150,6 +155,7 @@
         63    &22.6 &43.5 mA \\
       \end{tabular}
     \end{center} 
+    \caption{Mediciones tomadas}
   \end{table}
 \end{minipage}
 \begin{minipage}[t]{0.5\linewidth}
@@ -159,15 +165,15 @@
         $V_{CC}$ &$V_{A_1A_2}$ &$I$  \\
         \hline
         -5    &-5    &-0     \\
-        -10    &-10   &-1    uA\\
-        -15    &-15   &-1.5  uA\\
-        -20    &-20   &-2    uA\\
-        -22    &-22   &-2.2  uA\\
-        -24    &-24   &-2.4  uA\\
-        -26    &-26   &-2.6  uA\\
-        -28    &-28   &-2.7  uA\\
-        -30    &-30   &-3    uA\\
-        -32    &-32   &-3.2  uA\\
+        -10    &-10   &-1    $\mu$A\\
+        -15    &-15   &-1.5  $\mu$A\\
+        -20    &-20   &-2    $\mu$A\\
+        -22    &-22   &-2.2  $\mu$A\\
+        -24    &-24   &-2.4  $\mu$A\\
+        -26    &-26   &-2.6  $\mu$A\\
+        -28    &-28   &-2.7  $\mu$A\\
+        -30    &-30   &-3    $\mu$A\\
+        -32    &-32   &-3.2  $\mu$A\\
         -33    &-23   &-10.36 mA\\
         -34    &-22.7 &-11.53 mA\\
         -36    &-22.4 &-13.72 mA\\
@@ -181,6 +187,7 @@
         -63    &-22.3 &-43.70  mA \\
       \end{tabular}
     \end{center} 
+    \caption{Mediciones tomadas}
   \end{table}
 \end{minipage}
 
@@ -214,11 +221,14 @@
 % \end{tikzpicture}
 
 
+\begin{figure}
+\begin{center}
 \begin{tikzpicture}
   \begin{axis}[
     width=0.8\linewidth,
     xlabel = $V_{A_1A_2}$,
     ylabel = $I$,
+    scaled y ticks=base 10:3,
     grid=major,
     ]
     \addplot[color=red,mark=*, mark size=1.2pt] coordinates {
@@ -270,8 +280,12 @@
       };  
   \end{axis} 
 \end{tikzpicture}
+\end{center}
+\caption{Curva experimental}
+\end{figure}
 \section{Segunda Parte}
 \subsection{Circuito}
+\begin{figure}[H]
 \begin{center}
   \begin{circuitikz}[american]
     \draw (0,0) node[vcc](vcc){44V}
@@ -286,6 +300,8 @@
       to[R=$R_3$, a=1\unit{\kilo\ohm}] (pot.wiper);
   \end{circuitikz}
 \end{center}
+\caption{Circuito Segunda Parte}
+\end{figure}
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito.
@@ -323,21 +339,19 @@ comportamiento en IAK.
 \subsubsection{Comportamiento de la compuerta}
 \begin{figure}[H]
   \begin{center}
-    %\includegraphics[width=0.5\textwidth, clip, trim=0.5cm 10cm 0.5cm 8cm]{inc/sim/circuits/CircuitoSegundaParte.pdf}
+    \includegraphics[width=0.8\textwidth, clip, trim=5cm 10.5cm 6cm 15cm]{inc/sim/SegundaParteA.pdf}
   \end{center}
   \caption{Circuito simulado}
-  \label{fig:CircuitoSegundaParte}
 \end{figure}
+\begin{figure}[H]
 \begin{center}
   \begin{tikzpicture}[
     ]
     \begin{axis}[
-      width=\plotScale\linewidth,
       xlabel=$V_{G}$, 
       ylabel=$I_G$, 
       grid=both,
       scaled y ticks=base 10:3,
-      thick
       ]
       \addplot[color=red,
         %skip coords between index={0}{0},
@@ -345,19 +359,21 @@ comportamiento en IAK.
     \end{axis}
   \end{tikzpicture}
 \end{center}
+\caption{Simulación del comportamiento de la compuerta}
+\end{figure}
 \subsubsection{Disparó por tensión}
 \begin{figure}[H]
   \begin{center}
-    %\includegraphics[width=0.5\textwidth, clip, trim=0.5cm 10cm 0.5cm 8cm]{inc/sim/circuits/CircuitoSegundaParte.pdf}
+    \includegraphics[width=0.5\linewidth, clip, trim=5cm 12cm 10cm 12cm]{inc/sim/SegundaParteB.pdf}
   \end{center}
   \caption{Circuito simulado}
   \label{fig:CircuitoSegundaParte}
 \end{figure}
+\begin{figure}[H]
 \begin{center}
   \begin{tikzpicture}[
     ]
     \begin{axis}[
-      width=\plotScale\linewidth,
       xlabel=$V_{AK}$, 
       ylabel=$I_{AK}$, 
       grid=both,
@@ -369,7 +385,9 @@ comportamiento en IAK.
         ] table [x index=1, y index=3]{./inc/sim/SegundaParteB.txt};
     \end{axis}
   \end{tikzpicture}
+  \caption{Simulación disparó por tensión}
 \end{center}
+\end{figure}
 
 \subsection{Experimental} %Alimentamos con 30V el div ressitivo
 Colocando $V_{CC}=0V$ 
@@ -403,16 +421,16 @@ Colocando $V_{CC}=0V$
       ]
       \addplot[color=red,mark=*] coordinates {
           (0      ,   0)
-          (0.05  ,0.023)
-          (0.1   ,0.377)
-          (0.2   ,0.722)
-          (0.3   ,1.062)
-          (0.4   ,1.40 )
-          (0.5   ,2.50 )
-          (0.6   ,3.08 )
-          (0.7   ,3.80 )
-          (0.73  ,4.40 )
-          (0.76  ,4.87 )
+          (0.05  ,0.023e-3)
+          (0.1   ,0.377e-3)
+          (0.2   ,0.722e-3)
+          (0.3   ,1.062e-3)
+          (0.4   ,1.40 e-3)
+          (0.5   ,2.50 e-3)
+          (0.6   ,3.08 e-3)
+          (0.7   ,3.80 e-3)
+          (0.73  ,4.40 e-3)
+          (0.76  ,4.87 e-3)
         };  
     \end{axis} 
   \end{tikzpicture}
@@ -425,7 +443,7 @@ Colocando $V_{CC}=0V$
 %Vt  =  1V 
 %Ranodo = 5.8k
 Posteriormente, se colocó $V_{CC}=210V$ y se disparó el SRC tomando las mediciones pertinentes. 
-Luego del disparó, se interumpió $I_G$ y se procedió a disminuir $V_{CC}$ progresivamente hasta apagar el dispositivo.
+Luego del disparo, se interrumpió $I_G$ y se procedió a disminuir $V_{CC}$ progresivamente hasta apagar el dispositivo.
 \par
 \begin{minipage}{0.3\linewidth}
 \begin{table}[H]
@@ -458,38 +476,38 @@ Luego del disparó, se interumpió $I_G$ y se procedió a disminuir $V_{CC}$ pro
       grid=major,
       ]
       \addplot[color=red,mark=*] coordinates {
-          (195 ,28  )  
-          (187 ,26  )
-          (180 ,25.5)
-          (175 ,24.6)
-          (170 ,23.8)
-          (160 ,22.7)
-          (149 ,21  )
-          (140 ,19  )
-          (110 ,12.8)
-          (100 ,11.7)
-          (90  ,10.5)
-          (80  ,9.5 )
-          (80  ,0.5 )
+          (195 ,28e-3)  
+          (187 ,26e-3)
+          (180 ,25.5e-3)
+          (175 ,24.6e-3)
+          (170 ,23.8e-3)
+          (160 ,22.7e-3)
+          (149 ,21e-3)
+          (140 ,19e-3)
+          (110 ,12.8e-3)
+          (100 ,11.7e-3)
+          (90  ,10.5e-3)
+          (80  ,9.5e-3)
+          (80  ,0.5e-3)
         };    
     \end{axis} 
   \end{tikzpicture}
 \end{minipage}
 \par
-Posteriormente, luego del apagado del SCR, se volvió a conectar la corriente de compuerta,
+Después, apagado del SCR, se volvió a conectar la corriente de compuerta,
 manteniendo el potenciómetro en la posición previa. Analizando de este modo, que el SCR 
 se encendió nuevamente.
 \par
-Por último, con el potenciómetro en la posición de disparo, se invertió la conexiones 
-anodo-catodo del SCR. Así, se logró medir una corriente de fuga inversa de 12.5uA
+Por último, con el potenciómetro en la posición de disparo, se invirtió la conexion
+anodo-catodo del SCR. Así, se logró medir una corriente de fuga inversa
 \begin{align}
   I_{RR} = 12.5\unit{\micro\ampere} 
 \end{align}
-De esta manera, las mediciones tomadas en este último procedicimento resultan
+De esta manera, comparando las mediciones tomadas en esta última parte con las proporcionadas por el fabricante
 \begin{table}[H]
   \begin{center}
     \begin{tabular}{l|c|c|c}
-      \multirow{2}{*}{Parametro} &\multirow{2}{*}{Medido @$Vcc=210V$}  &\multicolumn{2}{c}{Datasheet}  \\
+      \multirow{2}{*}{Parámetro} &\multirow{2}{*}{Medido @$Vcc=210V$}  &\multicolumn{2}{c}{Datasheet}  \\
       \cline{3-4}
                 &  &TYP. &MAX  \\
       \hline
@@ -497,7 +515,7 @@ De esta manera, las mediciones tomadas en este último procedicimento resultan
       $I_{GT}$  &3.38mA  &2mA   &15mA  \\
       $V_{T}$   &1V      &1.4V   &1.75V @$I_T=23A$  \\
       $I_{H}$   &9.50mA  &7mA   &20mA  \\
-      $I_{R}$   &12.5\unit{\micro\ampere} & &
+      $I_{RR}$  &12.5\unit{\micro\ampere} & &
     \end{tabular}
   \end{center} 
 \end{table}
@@ -512,7 +530,7 @@ valores brindados por el fabricante (datasheet) son:
 
 \section{Tercera Parte}
 \subsection{Circuito}
-Para este tercera parte, se trabajó con el mismo circuito que en la parte anterior.
+Para esta tercera parte, se trabajó con el mismo circuito que en la parte anterior.
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito.
@@ -536,7 +554,6 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
 %   \end{center} 
 % \end{table}
 
-\begin{minipage}{0.3\linewidth}
 \begin{table}[H]
   \begin{center}
     \begin{tabular}{|l|c|c|c|c|}
@@ -544,7 +561,7 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       $I_{G}\rightarrow$  &\multicolumn{2}{c|}{3.35 mA} &\multicolumn{2}{c|}{3.65 mA}  \\ 
       \hline
       \hline
-      $V_{CC}$  &$V_{AK}$ &$I_{AK}$ &$V_{AK}$ &$I_{AK}$ \\ 
+      $V_{CC}$  &$V_{AK}$ &$I_{AK}[ma]$ &$V_{AK}$ &$I_{AK}[mA]$ \\ 
       \hline
       0     &0     &3.40    &0    &3.6    \\
       1     &0.60  &3.50    &0.6  &3.62   \\
@@ -559,11 +576,11 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       \hline
     \end{tabular}
   \end{center}
+  \caption{Mediciones obtenidas}
 \end{table}
-\end{minipage}
-\begin{minipage}{0.7\linewidth}
-\centering
-  \begin{tikzpicture}
+\begin{figure}[H]
+  \begin{center}
+   \begin{tikzpicture}
     \begin{axis}[
       xlabel = $V_{AK}$,
       ylabel = $I_{AK}$,
@@ -571,37 +588,41 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       grid=major,
       ]
       \addplot[color=red,mark=*] coordinates {
-          (0    ,3.40 )  
-          (0.60 ,3.50 )
-          (1    ,3.55 )
-          (1.60 ,3.57 )
-          (2.33 ,3.60 )
-          (2.46 ,3.72 )
-          (2.60 ,3.75 )
-          (2.81 ,3.9  )
-          (0.67 ,4.62 )
-          (0.69 ,5.62 )
+          (0    ,3.40e-3)  
+          (0.60 ,3.50e-3)
+          (1    ,3.55e-3)
+          (1.60 ,3.57e-3)
+          (2.33 ,3.60e-3)
+          (2.46 ,3.72e-3)
+          (2.60 ,3.75e-3)
+          (2.81 ,3.9e-3)
+          (0.67 ,4.62e-3)
+          (0.69 ,5.62e-3)
         };    
       \addplot[color=blue,mark=*] coordinates {
-          (0    ,3.6 )  
-          (0.6  ,3.62)
-          (0.73 ,3.70)
-          (1.09 ,3.90)
-          (1.1  ,3.90)
-          (1.33 ,4   )
-          (1.35 ,4.10)
-          (1.25 ,4.12)
-          (0.75 ,4.36)
-          (0.78 ,5.36)
+          (0    ,3.6e-3)  
+          (0.6  ,3.62e-3)
+          (0.73 ,3.70e-3)
+          (1.09 ,3.90e-3)
+          (1.1  ,3.90e-3)
+          (1.33 ,4e-3)
+          (1.35 ,4.10e-3)
+          (1.25 ,4.12e-3)
+          (0.75 ,4.36e-3)
+          (0.78 ,5.36e-3)
         };
     \end{axis} 
   \end{tikzpicture}
-\end{minipage}
+ \end{center}
+\caption{Curvas experimentales}
+\end{figure}
+
 
 
 \section{Cuarta Parte}
 \subsection{Circuito}
-\begin{center}
+\begin{figure}
+  \begin{center}[H]
   \begin{circuitikz}[american]
     \draw (0,0) node[vcc](vcc){20V}
       to[R=$R_1$, a=3.3\unit{\kilo\ohm}] ++(0,-1.5)
@@ -615,6 +636,8 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       to[R=$R_3$, a=4.7\unit{\kilo\ohm}] (pot.wiper);
   \end{circuitikz}
 \end{center}
+\caption{Circuito Cuarta Parte}
+\end{figure}
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito.
@@ -629,7 +652,6 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
   \item Subir ahora el valor de VCC a 150V y repetir los pasos 4, 5 y 6.
   \item Completar la siguiente tabla de mediciones.
 \end{enumerate}
-\subsection{Simulación}
 \subsection{Experimental}
 \begin{table}[H]
   \begin{center}
@@ -658,11 +680,12 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       \hline
     \end{tabular}
   \end{center}
+  \caption{Mediciones obtenidas}
 \end{table}
 
 \section{Quinta Parte}
 \subsection{Circuito}
-%potencimetro 5k
+\begin{figure}[H]
 \begin{center}
   \begin{circuitikz}[american]
     \ctikzset{bipoles/border margin=1}
@@ -675,6 +698,8 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
     \draw (pot) to[short]++(0,-2) coordinate(B) to[short,-*](gnd|-B);
   \end{circuitikz}
 \end{center}
+\caption{Circuito Quinta Parte}
+\end{figure}
 \subsection{Procedimiento}
 \begin{enumerate}
   \item Armar el circuito.
@@ -688,8 +713,58 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
   \item Subir ahora el valor de VCC a 150V y repetir los pasos 4, 5 y 6.
   \item Completar la siguiente tabla de mediciones.
 \end{enumerate}
-\subsection{Simulación}
 %Usamos 5k
+\subsection{Simulación}
+\begin{figure}[H]
+  \begin{center}
+    %\includegraphics[width=0.95\textwidth]{figures/}
+  \end{center}
+  \caption{Circuito Simulado}\label{fig:}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style={ group size=1 by 2, x descriptions at=edge bottom, vertical sep=3pt},
+      xlabel=$t$,
+      width=\linewidth,
+      height=0.5\linewidth,
+      grid=both,
+      legend pos=outer north east
+      ]
+      \nextgroupplot[ylabel=$V_{A_1 A_2}$]
+      \addplot[color=red, 
+        skip coords between index={514}{4319}
+        ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
+      \addplot[color=blue, 
+        skip coords between index={0}{514},
+        skip coords between index={1423}{4319}
+        ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
+      \addplot[color=brown,
+        ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
+        skip coords between index={0}{1423},
+        skip coords between index={2748}{4319}
+        ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
+      \addplot[color=green, 
+        skip coords between index={0}{2748}
+        ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
+     \legend{
+       $V_{CA}=50$,
+       $V_{CA}=75$,
+       $V_{CA}=90$,
+       $V_{CA}=105$,
+     };
+      \nextgroupplot[ylabel=A]
+      \addplot[color=green, mark=o,mark repeat=80,mark size=1.5pt,
+        skip coords between index={514}{4319}
+        ] table [x index=0, y index=1]{./inc/sim/QuintaParte.txt};
+    \end{groupplot}
+  \end{tikzpicture}
+\end{center}
+\caption{Resultados simulación}
+\end{figure}
+
+
 \subsection{Experimental}
 \begin{table}[H]
   \begin{center}
@@ -698,23 +773,24 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       $V_{CC}\rightarrow $&\multicolumn{2}{|c|}{$V_{AC}=50$} &\multicolumn{2}{c|}{$V_{AC}=75$} &\multicolumn{2}{c|}{$V_{AC}=90$} &\multicolumn{2}{c|}{$V_{AC}=105$}\\ 
       \hline
       \hline
-      $V_{1}$ &$I_G$ &$I_A$  &$I_G$ &$I_A$  &$I_G$ &$I_K$  &$I_G$ &$I_K$\\ 
+      $V_{1}$ &$I_G[\mu A]$ &$I_A[\mu A]$  &$I_G[\mu A]$ &$I_A[\mu A]$  &$I_G[\mu A]$ &$I_A[\mu A]$  &$I_G[\mu A]$ &$I_A[\mu A]$\\ 
       \hline
-      0    &0      &0        &176u    &10.2m   &100u   &15.6m &79.8u    &18.8m    \\
-      5    &5.10u  &5.10u    &548u    &7.08m   &268u   &12.0m &139.7u   &16.09m   \\
-      10   &9.80u  &9.80u    &224u    &3.85m   &-      &-     &300.2u   &13.44m   \\
-      15   &15.10u &15.10u   &14.9u   &14.9u   &473u   &8.35m &-        &-        \\
-      20   &20.60u &20.60u   &20.3u   &20.3u   &20.2u  &20.2u &-        &-        \\
-      23   &22.80u &22.80u   &23.1u   &23.1u   &23.1u  &23.1u &440u     &9.32m    \\
-      30   &-      &-        &30.4u   &30.4u   &30.4u  &30.4u &30.5u    &30.5u    \\
-      34   &-      &-        &34.6u   &34.6u   &34.6.u &34.6u &34.9u    &34.9u    \\
-      40   &-      &-        &-       &-       &40.6u  &40.6u &40.6u    &40.6u    \\
+      0    &0     &0       &176    &10.2mA &100   &15.6mA  &79.8    &18.8mA    \\
+      5    &5.10  &5.10    &548    &7.08mA &268   &12.0mA  &139.7   &16.09mA   \\
+      10   &9.80  &9.80    &224    &3.85mA &-     &-       &300.2   &13.44mA   \\
+      15   &15.10 &15.10   &14.9   &14.9   &473   &8.35mA  &-       &-        \\
+      20   &20.60 &20.60   &20.3   &20.3   &20.2  &20.2    &-       &-        \\
+      23   &22.80 &22.80   &23.1   &23.1   &23.1  &23.1    &440     &9.32mA    \\
+      30   &-     &-       &30.4   &30.4   &30.4  &30.4    &30.5    &30.5    \\
+      34   &-     &-       &34.6   &34.6   &34.6  &34.6    &34.9    &34.9    \\
+      40   &-     &-       &-       &-     &40.6  &40.6    &40.6    &40.6    \\
             \hline
     \end{tabular}
   \end{center}
+  \caption{Mediciones obtenidas}
 \end{table}
-De esta manera los momentos en los que el triac se dispara son:
-\begin{enumerate}
+De esta manera los momentos en los que el triac se disparó fueron:
+\begin{itemize}
   \item Para @$V_{CC}=50V$
     \begin{center}
       No se disparó
@@ -737,7 +813,8 @@ De esta manera los momentos en los que el triac se dispara son:
       I_{GT} &= 223u \\
       I_{A}  &= 8.50mA 
     \end{align}
-\end{enumerate}
+\end{itemize}
+\begin{figure}[H]
 \begin{center}
   \begin{tikzpicture}
     \begin{axis}[
@@ -745,9 +822,10 @@ De esta manera los momentos en los que el triac se dispara son:
       ylabel = $I_{A}$,
       grid=major,
       scaled y ticks=base 10:3,
+      scaled x ticks=base 10:3,
       legend pos=outer north east
       ]
-      \addplot[color=red, mark=*] coordinates {
+      \addplot[color=red, mark=o] coordinates {
           (0       ,0       )  
           (5.10e-6 ,5.10e-6 )
           (9.80e-6 ,9.80e-6 )
@@ -755,7 +833,7 @@ De esta manera los momentos en los que el triac se dispara son:
           (20.60e-6,20.60e-6)
           (22.80e-6,22.80e-6)
         };    
-      \addplot[color=blue, mark={square*}] coordinates {
+      \addplot[color=blue, mark={square}] coordinates {
           (176e-6  ,  10e-3)  
           (548e-6  ,7.08e-3)
           (224e-6  ,3.85e-3)
@@ -765,7 +843,7 @@ De esta manera los momentos en los que el triac se dispara son:
           (30.4e-6 ,30.4e-6)
           (34.6e-6 ,34.6e-6)
         };
-      \addplot[color=brown, mark={triangle*}] coordinates {
+      \addplot[color=brown, mark={triangle}] coordinates {
           (100e-6   ,15.6e-3)  
           (268e-6   ,12.0e-3)
           (473e-6   ,8.35e-3)
@@ -793,9 +871,13 @@ De esta manera los momentos en los que el triac se dispara son:
     \end{axis}          
   \end{tikzpicture}
 \end{center}
+\caption{Curvas experimentales}
+\end{figure}
 
+\section{Sexta Parte}
 \section{Séptima Parte}
 \subsection{Circuito}
+\begin{figure}[H]
 \begin{center}
   \begin{circuitikz}[american]
     \ctikzset{bipoles/border margin=1}
@@ -808,6 +890,8 @@ De esta manera los momentos en los que el triac se dispara son:
     \draw (pot) to[C,a=0.1\unit{\micro\farad}]++(0,-3) coordinate(B) to[short,-*](gnd|-B);
   \end{circuitikz}
 \end{center}
+\caption{Circuito Séptima Parte}
+\end{figure}
 \subsection{Procedimiento}
 \begin{itemize}
   \item  Procedimiento
@@ -820,6 +904,14 @@ De esta manera los momentos en los que el triac se dispara son:
   RL y luego entre ambos ánodos del TRIAC.
 \end{itemize}
 \subsection{Simulación}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=\textwidth, clip, trim=0 10cm 8cm 11cm]{inc/sim/SeptimaParte.pdf}
+  \end{center}
+  \caption{Circuito simulado}\label{fig:}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
   \begin{tikzpicture}
     \begin{groupplot}[
@@ -843,9 +935,9 @@ De esta manera los momentos en los que el triac se dispara son:
         skip coords between index={0}{670}
         ] table [x index=0, y index=1]{./inc/sim/SeptimaParte.txt};
      \legend{
-     $K\rightarrow 1$,
-     $K\rightarrow 0.5$,
-     $K\rightarrow 0$
+     $A\rightarrow 1$,
+     $A\rightarrow 0.5$,
+     $A\rightarrow 0$
      };
       \nextgroupplot[ylabel=$V_{A_1}$]
       \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
@@ -874,13 +966,16 @@ De esta manera los momentos en los que el triac se dispara son:
     \end{groupplot}
   \end{tikzpicture}
 \end{center}
+\caption{Resultados simulación}
+\end{figure}
 
 \section{Octava Parte}
 \subsection{Circuito}
+\begin{figure}[H]
 \begin{center}
   \begin{circuitikz}[american]
     \ctikzset{bipoles/border margin=1}
-    \draw (0,0) node[vcc](vcc){$V_{AC}$} 
+    \draw (0,0) node[vcc](vcc){$V_{AC}=100V$} 
       to[L, a=2H]++(0,-2) to[R=$R_6$, a=5\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
       to[Tr*, mirror, n=triac, l=BT136]++(0,-4)
       to[R,a=100\unit{\ohm}]++(0,-2) node[ground](gnd){};
@@ -889,6 +984,8 @@ De esta manera los momentos en los que el triac se dispara son:
     \draw (pot) to[C,a=0.1\unit{\micro\farad}]++(0,-3) coordinate(B) to[short,-*](gnd|-B);
   \end{circuitikz}
 \end{center}
+\caption{Circuito Octava Parte}
+\end{figure}
 \subsection{Procedimiento}
 \begin{itemize}
   \item Armar el circuito.
@@ -902,124 +999,124 @@ De esta manera los momentos en los que el triac se dispara son:
   \item Colocar el potenciómetro en su posición media entre ambos ánodos del
     TRIAC. Observar y graficar con detenimiento el momento donde la IH
     produce el apagado del TRIAC
-\end{itemize}
+ \end{itemize}
 \subsection{Simulación}
 \begin{figure}[H]
-  \begin{center}
-    %\includegraphics[width=0.95\textwidth]{}
-  \end{center}
-  \caption{Circuito simulado}\label{fig:}
+ \begin{center}
+   \includegraphics[width=0.95\textwidth, clip, trim=0 8cm 8cm 10cm]{inc/sim/OctavaParte.pdf}
+ \end{center}
+ \caption{Circuito simulado}\label{fig:}
 \end{figure}
 \subsubsection{Sin inductor}
-\begin{center}
-  \begin{tikzpicture}
-    \begin{groupplot}[
-      group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
-      xlabel=$t$,
-      width=\plotScale\linewidth,
-      height=0.5\linewidth,
-      grid=both,
-      legend pos=outer north east
-      ]
-      \nextgroupplot[ylabel=$V_{DIAC}$]
-      \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-        %skip coords between index={0}{291},
-        skip coords between index={291}{1196}
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{291},
-        skip coords between index={670}{1196}
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{670}
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-     \legend{
-     $K\rightarrow 1$,
-     $K\rightarrow 0.5$,
-     $K\rightarrow 0$
-     };
-      \nextgroupplot[ylabel=$V_{A_1}$]
-      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-        %skip coords between index={0}{291},
-        skip coords between index={291}{1196},
-        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
-      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{291},
-        skip coords between index={670}{1196},
-        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
-      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{670},
-        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
-      \nextgroupplot[ylabel=$V_{L}$]
-      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-        %skip coords between index={0}{291},
-        skip coords between index={291}{1196},
-        ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
-      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{291},
-        skip coords between index={670}{1196},
-        ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
-      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{670},
-        ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
-    \end{groupplot}
-  \end{tikzpicture}
-\end{center}
-\subsubsection{Con inductor}
-\begin{center}
-  \begin{tikzpicture}
-    \begin{groupplot}[
-      group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
-      xlabel=$t$,
-      width=\plotScale\linewidth,
-      height=0.5\linewidth,
-      grid=both,
-      legend pos=outer north east
-      ]
-      \nextgroupplot[ylabel=$V_{DIAC}$]
-      \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-        %skip coords between index={0}{291},
-        skip coords between index={269}{1073}
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
-      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{269},
-        skip coords between index={617}{1073}
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
-      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{617}
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
-     \legend{
-     $K\rightarrow 1$,
-     $K\rightarrow 0.5$,
-     $K\rightarrow 0$
-     };
-      \nextgroupplot[ylabel=$V_{A_1}$]
-      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-        %skip coords between index={0}{291},
-        skip coords between index={269}{1073}
-        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
-      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{269},
-        skip coords between index={617}{1073}
-        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
-      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{617}
-        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
-      \nextgroupplot[ylabel=$V_{L}$]
-      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-        %skip coords between index={0}{291},
-        skip coords between index={269}{1073}
-        ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
-      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{269},
-        skip coords between index={617}{1073}
-        ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
-      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-        skip coords between index={0}{617}
-        ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
-    \end{groupplot}
-  \end{tikzpicture}
-\end{center}
+% \begin{center}
+%\begin{tikzpicture}
+%  \begin{groupplot}[
+%    group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+%    xlabel=$t$,
+%    width=\plotScale\linewidth,
+%    height=0.5\linewidth,
+%    grid=both,
+%    legend pos=outer north east
+%    ]
+%    \nextgroupplot[ylabel=$V_{DIAC}$]
+%    \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+%      %skip coords between index={0}{291},
+%      skip coords between index={291}{1196}
+%      ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{291},
+%      skip coords between index={670}{1196}
+%      ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{670}
+%      ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+%   \legend{
+%   $K\rightarrow 1$,
+%   $K\rightarrow 0.5$,
+%   $K\rightarrow 0$
+%   };
+%    \nextgroupplot[ylabel=$V_{A_1}$]
+%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+%      %skip coords between index={0}{291},
+%      skip coords between index={291}{1196},
+%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
+%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{291},
+%      skip coords between index={670}{1196},
+%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
+%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{670},
+%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
+%    \nextgroupplot[ylabel=$V_{L}$]
+%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+%      %skip coords between index={0}{291},
+%      skip coords between index={291}{1196},
+%      ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
+%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{291},
+%      skip coords between index={670}{1196},
+%      ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
+%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{670},
+%      ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
+%  \end{groupplot}
+%\end{tikzpicture}
+%\end{center}
+%\subsubsection{Con inductor}
+%\begin{center}
+%\begin{tikzpicture}
+%  \begin{groupplot}[
+%    group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+%    xlabel=$t$,
+%    width=\plotScale\linewidth,
+%    height=0.5\linewidth,
+%    grid=both,
+%    legend pos=outer north east
+%    ]
+%    \nextgroupplot[ylabel=$V_{DIAC}$]
+%    \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+%      %skip coords between index={0}{291},
+%      skip coords between index={269}{1073}
+%      ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
+%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{269},
+%      skip coords between index={617}{1073}
+%      ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
+%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{617}
+%      ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
+%   \legend{
+%   $K\rightarrow 1$,
+%   $K\rightarrow 0.5$,
+%   $K\rightarrow 0$
+%   };
+%    \nextgroupplot[ylabel=$V_{A_1}$]
+%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+%      %skip coords between index={0}{291},
+%      skip coords between index={269}{1073}
+%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
+%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{269},
+%      skip coords between index={617}{1073}
+%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
+%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{617}
+%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
+%    \nextgroupplot[ylabel=$V_{L}$]
+%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+%      %skip coords between index={0}{291},
+%      skip coords between index={269}{1073}
+%      ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
+%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{269},
+%      skip coords between index={617}{1073}
+%      ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
+%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+%      skip coords between index={0}{617}
+%      ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
+%  \end{groupplot}
+%\end{tikzpicture}
+%\end{center}
 
 
 
