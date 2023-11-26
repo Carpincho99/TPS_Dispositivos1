@@ -10,9 +10,12 @@
 \usepackage{circuitikz}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usepackage{float}
+
 \pgfuseplotmark{square*}
 \pgfuseplotmark{triangle*}
-\pgfplotsset{compat=1.18}\instituto{Universidad Tecnológica Nacional\\Facultad Regional Córdoba}
+\pgfplotsset{compat=1.18}
 \usetikzlibrary{calc, positioning}
 
 
@@ -705,14 +708,17 @@ Para este tercera parte, se trabajó con el mismo circuito que en la parte anter
       23   &22.80u &22.80u   &23.1u   &23.1u   &23.1u  &23.1u &440u     &9.32m    \\
       30   &-      &-        &30.4u   &30.4u   &30.4u  &30.4u &30.5u    &30.5u    \\
       34   &-      &-        &34.6u   &34.6u   &34.6.u &34.6u &34.9u    &34.9u    \\
-      40   &       &         &        &        &40.6u  &40.6u &40.6u    &40.6u    \\
+      40   &-      &-        &-       &-       &40.6u  &40.6u &40.6u    &40.6u    \\
             \hline
     \end{tabular}
   \end{center}
 \end{table}
 De esta manera los momentos en los que el triac se dispara son:
 \begin{enumerate}
-  \item Para @$V_{CC}=50V$: No se disparó \\
+  \item Para @$V_{CC}=50V$
+    \begin{center}
+      No se disparó
+    \end{center}
   \item Para @$V_{CC}=75V$ 
     \begin{align}
       V_{GT} &= 10V - V_{T_{\text{Diac}}}  \\
@@ -802,7 +808,7 @@ De esta manera los momentos en los que el triac se dispara son:
     \draw (pot) to[C,a=0.1\unit{\micro\farad}]++(0,-3) coordinate(B) to[short,-*](gnd|-B);
   \end{circuitikz}
 \end{center}
-\section{Procedimiento}
+\subsection{Procedimiento}
 \begin{itemize}
   \item  Procedimiento
   \item Armar el circuito.
@@ -813,40 +819,208 @@ De esta manera los momentos en los que el triac se dispara son:
   \item Colocar el potenciómetro hacia el otro extremo y medir la forma de onda en
   RL y luego entre ambos ánodos del TRIAC.
 \end{itemize}
+\subsection{Simulación}
+\begin{center}
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+      xlabel=$t$,
+      width=\plotScale\linewidth,
+      height=0.5\linewidth,
+      grid=both,
+      legend pos=outer north east
+      ]
+      \nextgroupplot[ylabel=$V_{DIAC}$]
+      \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={291}{1196}
+        ] table [x index=0, y index=1]{./inc/sim/SeptimaParte.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{291},
+        skip coords between index={670}{1196}
+        ] table [x index=0, y index=1]{./inc/sim/SeptimaParte.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{670}
+        ] table [x index=0, y index=1]{./inc/sim/SeptimaParte.txt};
+     \legend{
+     $K\rightarrow 1$,
+     $K\rightarrow 0.5$,
+     $K\rightarrow 0$
+     };
+      \nextgroupplot[ylabel=$V_{A_1}$]
+      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={291}{1196},
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/SeptimaParte.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{291},
+        skip coords between index={670}{1196},
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/SeptimaParte.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{670},
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/SeptimaParte.txt};
+      \nextgroupplot[ylabel=$V_{L}$]
+      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={291}{1196},
+        ] table [x index=0, y index=3]{./inc/sim/SeptimaParte.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{291},
+        skip coords between index={670}{1196},
+        ] table [x index=0, y index=3]{./inc/sim/SeptimaParte.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{670},
+        ] table [x index=0, y index=3]{./inc/sim/SeptimaParte.txt};
+    \end{groupplot}
+  \end{tikzpicture}
+\end{center}
 
 \section{Octava Parte}
+\subsection{Circuito}
+\begin{center}
+  \begin{circuitikz}[american]
+    \ctikzset{bipoles/border margin=1}
+    \draw (0,0) node[vcc](vcc){$V_{AC}$} 
+      to[L, a=2H]++(0,-2) to[R=$R_6$, a=5\unit{\kilo\ohm}]++(0,-3) coordinate(R6)
+      to[Tr*, mirror, n=triac, l=BT136]++(0,-4)
+      to[R,a=100\unit{\ohm}]++(0,-2) node[ground](gnd){};
+    \draw (triac.G) to[biD*, a=DB3]++(-2,0) to[R,a=220\unit{\ohm}]++(-2,0) --++(-0.5,0) node[potentiometershape, anchor=wiper, rotate=-90, name=5\unit{\kilo\ohm}](pot){5\unit{\kilo\ohm}};
+    \draw (pot) to[R,a=2.2\unit{\kilo\ohm}]++(0,3) coordinate(A) to[short,-*](R6|-A);
+    \draw (pot) to[C,a=0.1\unit{\micro\farad}]++(0,-3) coordinate(B) to[short,-*](gnd|-B);
+  \end{circuitikz}
+\end{center}
+\subsection{Procedimiento}
+\begin{itemize}
+  \item Armar el circuito.
+  \item  Cerrar el interruptor de forma que la parte inductiva de la carga quede
+     cortocircuitada.
+  \item Colocar el potenciómetro en su posición media entre ambos ánodos del
+    TRIAC. Observar y graficar con detenimiento el momento donde la IH
+    produce el apagado del TRIAC.
+  \item Abrir el interruptor de forma que la parte inductiva de la carga quede
+    conectada.
+  \item Colocar el potenciómetro en su posición media entre ambos ánodos del
+    TRIAC. Observar y graficar con detenimiento el momento donde la IH
+    produce el apagado del TRIAC
+\end{itemize}
 \subsection{Simulación}
-\begin{figure}
+\begin{figure}[H]
   \begin{center}
     %\includegraphics[width=0.95\textwidth]{}
   \end{center}
   \caption{Circuito simulado}\label{fig:}
 \end{figure}
+\subsubsection{Sin inductor}
 \begin{center}
-  \begin{tikzpicture}[
-    ]
-    \begin{axis}[
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+      xlabel=$t$,
       width=\plotScale\linewidth,
-      xlabel=$t$, 
-      ylabel=$V_{A_1}$, 
+      height=0.5\linewidth,
       grid=both,
-      thick
+      legend pos=outer north east
       ]
-      \addplot[color=red,
+      \nextgroupplot[ylabel=$V_{DIAC}$]
+      \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={291}{1196}
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{291},
+        skip coords between index={670}{1196}
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{670}
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
+     \legend{
+     $K\rightarrow 1$,
+     $K\rightarrow 0.5$,
+     $K\rightarrow 0$
+     };
+      \nextgroupplot[ylabel=$V_{A_1}$]
+      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
         %skip coords between index={0}{291},
         skip coords between index={291}{1196},
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-      \addplot[color=blue,
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
         skip coords between index={0}{291},
         skip coords between index={670}{1196},
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-      \addplot[color=green,
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
         skip coords between index={0}{670},
-        ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-
-    \end{axis}
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
+      \nextgroupplot[ylabel=$V_{L}$]
+      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={291}{1196},
+        ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{291},
+        skip coords between index={670}{1196},
+        ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{670},
+        ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
+    \end{groupplot}
   \end{tikzpicture}
 \end{center}
+\subsubsection{Con inductor}
+\begin{center}
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+      xlabel=$t$,
+      width=\plotScale\linewidth,
+      height=0.5\linewidth,
+      grid=both,
+      legend pos=outer north east
+      ]
+      \nextgroupplot[ylabel=$V_{DIAC}$]
+      \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={269}{1073}
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{269},
+        skip coords between index={617}{1073}
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{617}
+        ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
+     \legend{
+     $K\rightarrow 1$,
+     $K\rightarrow 0.5$,
+     $K\rightarrow 0$
+     };
+      \nextgroupplot[ylabel=$V_{A_1}$]
+      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={269}{1073}
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{269},
+        skip coords between index={617}{1073}
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{617}
+        ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
+      \nextgroupplot[ylabel=$V_{L}$]
+      \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
+        %skip coords between index={0}{291},
+        skip coords between index={269}{1073}
+        ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
+      \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{269},
+        skip coords between index={617}{1073}
+        ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
+      \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
+        skip coords between index={0}{617}
+        ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
+    \end{groupplot}
+  \end{tikzpicture}
+\end{center}
+
 
 
 \end{document}
