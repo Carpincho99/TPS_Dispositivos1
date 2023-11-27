@@ -741,9 +741,8 @@ Para esta tercera parte, se trabajó con el mismo circuito que en la parte anter
         skip coords between index={1423}{4319}
         ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
       \addplot[color=brown,
-        ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
-        skip coords between index={0}{1423},
-        skip coords between index={2748}{4319}
+        skip coords between index={0}{1425},
+        skip coords between index={2745}{4320}
         ] table [x index=0, y index=2]{./inc/sim/QuintaParte.txt};
       \addplot[color=green, 
         skip coords between index={0}{2748}
@@ -1008,116 +1007,120 @@ De esta manera los momentos en los que el triac se disparó fueron:
  \caption{Circuito simulado}\label{fig:}
 \end{figure}
 \subsubsection{Sin inductor}
-% \begin{center}
-%\begin{tikzpicture}
-%  \begin{groupplot}[
-%    group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
-%    xlabel=$t$,
-%    width=\plotScale\linewidth,
-%    height=0.5\linewidth,
-%    grid=both,
-%    legend pos=outer north east
-%    ]
-%    \nextgroupplot[ylabel=$V_{DIAC}$]
-%    \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-%      %skip coords between index={0}{291},
-%      skip coords between index={291}{1196}
-%      ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{291},
-%      skip coords between index={670}{1196}
-%      ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{670}
-%      ] table [x index=0, y index=1]{./inc/sim/OctaveParte.txt};
-%   \legend{
-%   $K\rightarrow 1$,
-%   $K\rightarrow 0.5$,
-%   $K\rightarrow 0$
-%   };
-%    \nextgroupplot[ylabel=$V_{A_1}$]
-%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-%      %skip coords between index={0}{291},
-%      skip coords between index={291}{1196},
-%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
-%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{291},
-%      skip coords between index={670}{1196},
-%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
-%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{670},
-%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParte.txt};
-%    \nextgroupplot[ylabel=$V_{L}$]
-%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-%      %skip coords between index={0}{291},
-%      skip coords between index={291}{1196},
-%      ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
-%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{291},
-%      skip coords between index={670}{1196},
-%      ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
-%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{670},
-%      ] table [x index=0, y index=3]{./inc/sim/OctaveParte.txt};
-%  \end{groupplot}
-%\end{tikzpicture}
-%\end{center}
-%\subsubsection{Con inductor}
-%\begin{center}
-%\begin{tikzpicture}
-%  \begin{groupplot}[
-%    group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
-%    xlabel=$t$,
-%    width=\plotScale\linewidth,
-%    height=0.5\linewidth,
-%    grid=both,
-%    legend pos=outer north east
-%    ]
-%    \nextgroupplot[ylabel=$V_{DIAC}$]
-%    \addplot[thick, color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-%      %skip coords between index={0}{291},
-%      skip coords between index={269}{1073}
-%      ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
-%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{269},
-%      skip coords between index={617}{1073}
-%      ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
-%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{617}
-%      ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductor.txt};
-%   \legend{
-%   $K\rightarrow 1$,
-%   $K\rightarrow 0.5$,
-%   $K\rightarrow 0$
-%   };
-%    \nextgroupplot[ylabel=$V_{A_1}$]
-%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-%      %skip coords between index={0}{291},
-%      skip coords between index={269}{1073}
-%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
-%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{269},
-%      skip coords between index={617}{1073}
-%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
-%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{617}
-%      ] table [x index=0, y expr=\thisrowno{2}-\thisrowno{3}]{./inc/sim/OctaveParteInductor.txt};
-%    \nextgroupplot[ylabel=$V_{L}$]
-%    \addplot[thick,color=red, mark={triangle},mark repeat=80,mark size=1.5pt,
-%      %skip coords between index={0}{291},
-%      skip coords between index={269}{1073}
-%      ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
-%    \addplot[thick,color=blue, mark={square},mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{269},
-%      skip coords between index={617}{1073}
-%      ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
-%    \addplot[thick,color=brown, mark=x,mark repeat=80,mark size=1.5pt,
-%      skip coords between index={0}{617}
-%      ] table [x index=0, y index=3]{./inc/sim/OctaveParteInductor.txt};
-%  \end{groupplot}
-%\end{tikzpicture}
-%\end{center}
-
+ \begin{center}
+ \begin{tikzpicture}
+   \begin{groupplot}[
+     group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+     xlabel=$t$,
+     width=\plotScale\linewidth,
+     height=0.5\linewidth,
+     grid=both,
+     legend pos=outer north east
+     ]
+     \nextgroupplot[ylabel=$V_{DIAC}$]
+     \addplot[thick, color=red,
+       %skip coords between index={0}{291},
+       ] table [x index=0, y index=2]{./inc/sim/OctaveParteMOD.txt};
+     \nextgroupplot[ylabel=$V_{A_1 A_2}$]
+     \addplot[thick,color=red,
+       %skip coords between index={0}{291},
+       ] table [x index=0, y index=1]{./inc/sim/OctaveParteMOD.txt};
+     \nextgroupplot[ylabel=$V_{L}$]
+     \addplot[thick,color=red, 
+       %skip coords between index={0}{291},
+       ] table [x index=0, y index=4]{./inc/sim/OctaveParteMOD.txt};
+   \end{groupplot}
+ \end{tikzpicture}
+ \end{center}
+ \subsubsection{Con inductor}
+ \begin{center}
+ \begin{tikzpicture}
+   \begin{groupplot}[
+     group style={ group size=1 by 3, x descriptions at=edge bottom, vertical sep=3pt},
+     xlabel=$t$,
+     width=\plotScale\linewidth,
+     height=0.5\linewidth,
+     grid=both,
+     legend pos=outer north east
+     ]
+     \nextgroupplot[ylabel=$V_{DIAC}$]
+     \addplot[thick, color=red,
+       %skip coords between index={0}{291},
+       ] table [x index=0, y index=2]{./inc/sim/OctaveParteInductorMOD.txt};
+     \nextgroupplot[ylabel=$V_{A_1 A_2}$]
+     \addplot[thick,color=red,
+       %skip coords between index={0}{291},
+       ] table [x index=0, y index=1]{./inc/sim/OctaveParteInductorMOD.txt};
+     \nextgroupplot[ylabel=$V_{L}$]
+     \addplot[thick,color=red, 
+       %skip coords between index={0}{291},
+       ] table [x index=0, y index=4]{./inc/sim/OctaveParteInductorMOD.txt};
+   \end{groupplot}
+ \end{tikzpicture}
+ \end{center}
+ 
+ 
+\subsection{DIAC}
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}[c]{l|l|c}
+      Parametro  &Significado &Valor \\
+      \hline
+      $V_{BO}$     &    &  \\
+      $I_{BO}$     &    &  \\
+      $\Delta V$   &    &  \\
+      $I_C$        &    &  \\
+    \end{tabular}
+  \end{center}
+\caption{Datasheet DB3}
+\end{table}
+\subsection{SCR}
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}[c]{l|l|c}
+      Parametro  &Significado &Valor \\
+      \hline
+      $V_{DRM}$           &    &  \\
+      $V_{RRM}$           &    &  \\
+      $I_{T_{RMS}}$       &    &  \\
+      $I_{T_{AV}}$        &    &  \\
+      $I_{DRM}$           &    &  \\
+      $I_{RRM}$           &    &  \\
+      $I_{GT}$            &    &  \\
+      $V_{GT}$            &    &  \\
+      $I_{H}$             &    &  \\
+      $t_{gt}$            &    &  \\
+      $t_{q}$             &    &  \\
+      $R_{\theta JC}$     &    &  \\
+      $R_{\theta JA}$     &    &  
+    \end{tabular}
+  \end{center}
+\caption{Datasheet C106}
+\end{table}
+\subsection{TRIAC}
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}[c]{l|l|c}
+      Parametro  &Significado &Valor \\
+      \hline
+      $V_{DRM}$           &    &  \\
+      $V_{RRM}$           &    &  \\
+      $I_{T_{RMS}}$       &    &  \\
+      $I_{T_{SM}}$        &    &  \\
+      $I_{GT}$            &    &  \\
+      $V_{GT}$            &    &  \\
+      $I_{H}$             &    &  \\
+      $V_{T}$             &    &  \\
+      $t_{gt}$            &    &  \\
+      $t_{q}$             &    &  \\
+      $R_{\theta J-Amb}$  &    &  \\
+      $R_{\theta JA}$     &    &  \\
+      $T_{Stg}$           &    &  \\
+      $T_{J}$             &    &  
+    \end{tabular}
+  \end{center}
+\caption{Datasheet C106}
+\end{table}
 
 
 \end{document}
